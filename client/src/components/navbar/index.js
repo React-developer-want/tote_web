@@ -9,7 +9,7 @@ import { isHeaderHidden } from '../../utils/isHeaderHidden';
 import { getUserDetails } from '../../services/users/user-details';
 import { mapNavbarData } from '../../data/navbarData';
 import { checkLoginStatus } from '../../utils/checkLogin';
-import { sendErrorNotification } from '../../services/notifications';
+import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -27,6 +27,7 @@ const Navbar = () => {
         signout();
         setIsNavActive(prev => !prev);
         navigate('/login');
+        sendSuccessNotification("Logout successfully");
     }
 
     useEffect(() => {
@@ -38,11 +39,11 @@ const Navbar = () => {
             
             setHeader(location.pathname.substring(1, slashIndex));
         }
-      }, [location, navigate]);
+      }, [location]);
 
     const syncUserDetails = async ()=>{
         const response = await getUserDetails();
-        if(response.status === 'TokenExpiredError'){
+        if(response.status === 'unauthorized'){
             navigate('/login');
             sendErrorNotification('Session expired login again!')
         }

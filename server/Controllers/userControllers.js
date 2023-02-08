@@ -190,7 +190,6 @@ exports.resetpassword = async (req, res) => {
     const {email, otp, newPassword} = req.body;
     try{
         let user = await User.findOne({email});
-        console.log(user);
         if(otp !== user.otp){
             throw new Error("Otp is not valid!");
         }

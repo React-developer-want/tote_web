@@ -4,7 +4,7 @@ import Button from '../../components/button';
 import Email from '../../components/email';
 import Password from '../../components/password';
 import { signin } from '../../services/login/signin';
-import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
+import { sendErrorNotification, sendInfoNotification, sendSuccessNotification } from '../../services/notifications';
 import { checkAllTrue } from '../../utils/check-all';
 import { setLocalStorageKey } from '../../utils/localStorage';
 
@@ -18,7 +18,7 @@ const FormSection = (props) => {
   const onSubmitHandle = async (event) => {
     event.preventDefault();
     if (!checkAllTrue([isEmailValid, isPasswordValid])) {
-      console.log('Form Incomplete', 'Please fill details below.');
+      sendInfoNotification('Form Incomplete: Please fill details below.');
       return;
     }
     try{
@@ -27,8 +27,7 @@ const FormSection = (props) => {
       
       if(response.status === 'success'){
         setLocalStorageKey('token', response.token);
-        sendSuccessNotification('Successfully logged In');
-        sendSuccessNotification('Welcome'+ response.body.user.name);
+        sendSuccessNotification('Welcome '+ response.body.user.name);
         navigate('/');
       }else{
         sendErrorNotification(response.message);
