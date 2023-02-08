@@ -1,0 +1,143 @@
+.table-component table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Roboto";
+  color: #526484;
+}
+
+.table-component tr {
+  font-weight: 500;
+}
+
+.table-component{
+  th, td {
+    border: 2px solid #dbdfea;
+    padding: 12px 10px;
+    vertical-align: top;
+    text-align: center;
+  }
+} 
+
+.table-component th {
+  border: 2px solid #eae8e8;
+  background: #f1f0f0;
+  color: #000;
+  vertical-align: top;
+  position: relative;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.table-component td {
+  text-transform: lowercase;
+  vertical-align: middle;
+  .btn button{
+    font-size: 14px;
+    letter-spacing: 0;
+    padding: 5px;
+  }
+}
+
+.table-component th svg {
+  width: 12px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transition-duration: 400ms;
+}
+
+.table-component th svg.ascending {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.table-component th svg.descending {
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.table-component .pagination {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.table-component .page-count {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f6fa;
+  margin-right: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table-component .page-count.active {
+  color: #fff;
+  background: #1f3466;
+}
+
+.table-component .filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  .entries span{
+    text-transform: capitalize;
+    font-size: 16px;
+  }
+  
+}
+
+.table-component .filters input {
+  min-width: 600px;
+  border: 2px solid #dbdfea;
+  border-radius: 5px;
+  height: 28px;
+  font-size: 16px;
+  margin-right: 8px;
+  padding: 16px 0px 16px 16px;
+}
+
+.table-component .filters input:focus {
+  -webkit-box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
+  -moz-box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
+  box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
+  outline: none;
+}
+
+.table-component .filters select {
+  border-radius: 5px;
+  padding: 5px;
+  height: 28px;
+  border: 1px solid #dbdfea;
+  &:focus{
+    outline: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .table-component .filters {
+    display: block;
+  }
+
+  .table-component .filters input {
+    min-width: unset;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .table-wrapper {
+    overflow-x: scroll;
+  }
+
+  .table-component table {
+    width: 800px;
+  }
+}

@@ -1,0 +1,80 @@
+{
+    "metaData": {
+        "title": "User Details | TOTE"
+    },
+    "topSection": {
+        "title": "User Details"
+    },
+    "formSection": {
+        "inputComponents": [
+            {
+                "component": "name",
+                "details": {
+                    "label": "full name",
+                    "type": "text",
+                    "placeholder": "full name"
+                }
+            },
+            {
+                "component": "email",
+                "details": {
+                    "label": "email id",
+                    "type": "email",
+                    "placeholder": "email id"
+                }
+            },
+            {
+                "component": "phone",
+                "details": {
+                    "label": "Phone",
+                    "type": "tel",
+                    "placeholder": "phone number"
+                }
+            },
+            {
+                "component": "address",
+                "details": {
+                    "label": "Address",
+                    "type": "text",
+                    "placeholder": "address"
+                }
+            },
+            {
+                "component": "dropdown",
+                "details": {
+                    "label": "Role",
+                    "items": [
+                        "agent",
+                        "admin"
+                    ]
+                }
+            }
+        ],
+        "inputButtons": [
+            {
+                "component": "button",
+                "details": {
+                    "text": "Update",
+                    "type": "submit",
+                    "button": "primary"
+                }
+            },
+            {
+                "component": "cancelButton",
+                "details": {
+                    "text": "Cancel",
+                    "type": "button",
+                    "button": "success"
+                }
+            },
+            {
+                "component": "deleteButton",
+                "details": {
+                    "text": "Delete",
+                    "type": "button",
+                    "button": "danger"
+                }
+            }
+        ]
+    }
+}

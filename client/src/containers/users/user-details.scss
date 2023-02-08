@@ -1,0 +1,54 @@
+.userDetails-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .userDetails-container{
+        width: 70%;
+        margin: 3rem 1rem;
+        .userDetails-topSection{
+            width: 100%;
+            margin-bottom: 20px;
+            .main-title{
+                font-size: 26px;
+                font-weight: bold;
+            }
+        }
+        .formSection{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            form{
+                width: 100%;
+                .simpleInput-component{
+                    margin-bottom: 20px;
+                }
+                .dropdown-component{
+                    margin-bottom: 20px;
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+                    padding: 8px;
+
+                }
+                .buttons{
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    gap: 10px;
+                    .btn{
+                        width: 40%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .userDetails-page{
+        .userDetails-container{
+            width: 100%;
+            margin: 3rem 0;
+        }
+    }
+}

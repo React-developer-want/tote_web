@@ -1,0 +1,48 @@
+.otp-component {
+  .otp-wrapper {
+    display: flex;
+    border: 2px solid #B7B78A;
+    border-radius: 10px;
+    height: 50px;
+    position: relative;
+    padding: 0 0 0 16px;
+    .text{
+      color: #000;
+      font-weight: 600;
+      position: absolute;
+      top: -10px;
+      background-color: #fff;
+      padding: 0px 5px;
+    }
+    .otp-input{
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      border: none;
+      color: rgb(32, 33, 33);
+      background-color: transparent;
+    }
+    .otp-input:focus{
+      outline: none;
+    }
+    
+  }
+  .error-icon {
+    padding-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    svg{
+      fill: #e85347;
+    }
+  }
+  &.error {
+    .error-icon {
+      opacity: 1;
+    }
+    .otp-wrapper{
+      border-color: #e85347;
+    }
+  }
+}

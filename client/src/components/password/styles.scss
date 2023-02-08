@@ -1,0 +1,57 @@
+.password-component {
+  .password-wrapper {
+    display: flex;
+    border: 2px solid #B7B78A;
+    border-radius: 10px;
+    height: 50px;
+    position: relative;
+    padding: 0 0 0 16px;
+    .text{
+      color: #000;
+      font-weight: 600;
+      position: absolute;
+      top: -10px;
+      background-color: #fff;
+      padding: 0px 5px;
+    }
+    .password-input{
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      border: none;
+      color: rgb(32, 33, 33);
+      background-color: transparent;
+    }
+    .password-input:focus{
+      outline: none;
+    }
+    .show-password{
+      cursor: pointer;
+      background-color: transparent;
+      color: #086b25;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px 10px;
+    }
+  }
+  .error-icon {
+    padding-right: 8px;
+    display: none;
+    opacity: 0;
+    svg{
+      fill: #e85347;
+    }
+  }
+  &.error {
+    .error-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+    }
+    .password-wrapper{
+      border-color: #e85347;
+    }
+  }
+}

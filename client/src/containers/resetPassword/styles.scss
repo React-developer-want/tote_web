@@ -1,0 +1,12 @@
+.resetPassword-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .resetPassword-page {
+    background: #f7f7f7;
+  }
+}
