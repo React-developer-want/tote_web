@@ -24,10 +24,10 @@ const FormSection = (props) => {
     try{
 
       const response = await signin(email, password);
-      
+      console.log(response);
       if(response.status === 'success'){
         setLocalStorageKey('token', response.token);
-        sendSuccessNotification('Welcome '+ response.body.user.name);
+        sendSuccessNotification('Welcome '+ response.body.employee.name);
         navigate('/');
       }else{
         sendErrorNotification(response.message);

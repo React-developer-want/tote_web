@@ -5,7 +5,7 @@ import Dropdown from '../../components/dropdown';
 import SimpleInput from '../../components/input';
 import Loader from '../../components/loader';
 import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
-import { deleteUser, getUserDetailsById, updateUserDetails } from '../../services/users/user-details';
+import { deleteEmployee, getEmployeeDetailsById, updateEmployeeDetails } from '../../services/employees/employee-details';
 
 const FormSection = (props) => {
     const {id} = useParams();
@@ -17,7 +17,7 @@ const FormSection = (props) => {
     const [role, setRole] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const setUserData = (data) => {
+    const setEmployeeData = (data) => {
         setEmail(data?.email ?? '');
         setName(data?.name ?? '');
         setAddress(data?.address ?? '');
@@ -33,9 +33,9 @@ const FormSection = (props) => {
             address,
             role,
         };
-        const response = await updateUserDetails(id, details);
+        const response = await updateEmployeeDetails(id, details);
         if(response.status === 'success'){
-            sendSuccessNotification("User details has been updated");
+            sendSuccessNotification("Employee details has been updated");
         }else if(response.status === 'TokenExpiredError'){
             navigate('/login');
             sendErrorNotification('Session expired login again!')
@@ -45,7 +45,7 @@ const FormSection = (props) => {
     }
 
     const handleDelete = async () => {
-        const response = await deleteUser(id);
+        const response = await deleteEmployee(id);
         if(response.status === 'success'){
             navigate(-1);
             sendSuccessNotification(response.message);
@@ -59,13 +59,14 @@ const FormSection = (props) => {
 
 
     useEffect(()=> {
-        const getUserToUpdate = async (id) => {
+        const getEmployeeToUpdate = async (id) => {
             setLoading(true);
-            const response = await getUserDetailsById(id);
-            setUserData(response.body.user);
+            const response = await getEmployeeDetailsById(id);
+            
+            setEmployeeData(response?.body?.employee);
             setLoading(false);
         }
-        getUserToUpdate(id);
+        getEmployeeToUpdate(id);
     },[id])
 
     const formComponents = {

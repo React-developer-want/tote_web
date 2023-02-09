@@ -1,12 +1,12 @@
 
-export const mapUsersData = (data=[])=>{
+export const mapEmployeesData = (data=[])=>{
     return {
       metaData: {
-        title: "Users | TOTE"
+        title: "Employees | TOTE"
       },
       mainSection:{
 
-        usersTable: {
+        employeesTable: {
           rowLabels: ['Full Name', 'Email id', 'Phone Number', 'Address', 'Role', 'Action'],
           rows: data?.map((item) => ({
             action: 'Update',

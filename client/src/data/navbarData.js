@@ -8,26 +8,46 @@ export const mapNavbarData = (data)=>{
                 id: 'navitem-1'
             },
             {
-                to: '/ledger',
-                title: 'Ledger',
+                to: '/employees',
+                title: 'Employees',
                 id: 'navitem-2'
             },
             {
-                to: '/investments',
-                title: 'Investments',
+                to: '/departments',
+                title: 'Departments',
                 id: 'navitem-3'
             },
             {
-                to: '/users',
-                title: 'Users',
-                id: 'navitem-3'
+                to: '/projects',
+                title: 'Projects',
+                id: 'navitem-4'
             },
             {
-                to: '/plans',
-                title: 'Plans',
-                id: 'navitem-3'
+                to: '/tasks',
+                title: 'Tasks',
+                id: 'navitem-5'
+            },
+            {
+                to: '/timesheets',
+                title: 'Timesheets',
+                id: 'navitem-6'
+            },
+            {
+                to: '/reports',
+                title: 'Reports',
+                id: 'navitem-7'
+            },
+            {
+                to: '/settings',
+                title: 'Settings',
+                id: 'navitem-7'
+            },
+            {
+                to: '/profile',
+                title: 'Profile',
+                id: 'navitem-8'
             },
         ],
-        username: data?.name ?? '😎'
+        employeeName: data?.name ?? '😎'
     }
 }

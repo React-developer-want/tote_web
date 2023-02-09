@@ -1,11 +1,11 @@
-.userDetails-page{
+.employeeDetails-page{
     display: flex;
     justify-content: center;
     align-items: center;
-    .userDetails-container{
+    .employeeDetails-container{
         width: 70%;
         margin: 3rem 1rem;
-        .userDetails-topSection{
+        .employeeDetails-topSection{
             width: 100%;
             margin-bottom: 20px;
             .main-title{
@@ -45,8 +45,8 @@
 }
 
 @media screen and (max-width: 700px) {
-    .userDetails-page{
-        .userDetails-container{
+    .employeeDetails-page{
+        .employeeDetails-container{
             width: 100%;
             margin: 3rem 0;
         }

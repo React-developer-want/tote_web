@@ -1,9 +1,9 @@
 {
     "metaData": {
-        "title": "User Details | TOTE"
+        "title": "Employees Details | TOTE"
     },
     "topSection": {
-        "title": "User Details"
+        "title": "Employees Details"
     },
     "formSection": {
         "inputComponents": [

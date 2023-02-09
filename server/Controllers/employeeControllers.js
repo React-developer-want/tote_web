@@ -1,23 +1,22 @@
-const User = require('../db/userModel');
+const Employee = require('../db/employeeModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { transporter, generateOtp } = require('../utils/sendOtp');
 const ApiFeatures = require('../utils/apiFeatures');
-const { findByIdAndUpdate } = require('../db/userModel');
 const saltRounds = 10;
 
 exports.login = async (req, res) => {
     const {email , password} = req.body;
     try{
-        let result = await User.findOne({email});
+        let result = await Employee.findOne({email});
         const match = bcrypt.compareSync(password, result.password);
         if(!match){
             throw new Error("Password is not matching!");
         }
         const token = jwt.sign(
             {
-                user_id : result.id
+                employee_id : result.id
             }, process.env.ACCESS_TOKEN, { expiresIn: '1h' }
         );
 
@@ -28,7 +27,7 @@ exports.login = async (req, res) => {
             status : "success",
             token,
             body : {
-                user : result
+                employee : result
             }
         })
     }catch(error){
@@ -40,19 +39,19 @@ exports.login = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
-    const userObj = req.body;
+    const employeeObj = req.body;
     try{
-        const hash = bcrypt.hashSync(userObj.password, saltRounds);
-        userObj.password = hash;
-        let newUser = await User.create(userObj);
+        const hash = bcrypt.hashSync(employeeObj.password, saltRounds);
+        employeeObj.password = hash;
+        let newEmployee = await Employee.create(employeeObj);
 
-        newUser = newUser.toObject();
-        delete newUser.password;
+        newEmployee = newEmployee.toObject();
+        delete newEmployee.password;
 
         res.status(201).json({
             status : "success",
             body : {
-                newUser
+                newEmployee
             }
         })
 
@@ -64,22 +63,22 @@ exports.signup = async (req, res) => {
     }
 }
 
-exports.userDetails = async (req, res) => {
-    const {user_id} = req.user;
+exports.employeeDetails = async (req, res) => {
+    const {employee_id} = req.employee;
     const {id} = req.query;
     try{
         let ID;
         if(id){
             ID = id;
         }else{
-            ID = user_id;
+            ID = employee_id;
         }
-        const user = await User.findById(ID).select('-password -__v -otp');
+        const employee = await Employee.findById(ID).select('-password -__v -otp');
 
         res.status(200).json({
             status : "success",
             body : {
-                user
+                employee
             }
         })
 
@@ -91,17 +90,17 @@ exports.userDetails = async (req, res) => {
     }
 }
 
-exports.updateUser = async (req, res)=>{
+exports.updateEmployee = async (req, res)=>{
     const {id} = req.query;
     const updateData = req.body;
     try{
-        const user = await User.findByIdAndUpdate(id, updateData, {new: true})
+        const employee = await Employee.findByIdAndUpdate(id, updateData, {new: true})
             .select('-password -otp -__v');
         
         res.status(200).json({
             status : "success",
             body : {
-                user
+                employee
             }
         })
 
@@ -113,14 +112,14 @@ exports.updateUser = async (req, res)=>{
     }
 }
 
-exports.deleteUser = async (req, res)=>{
+exports.deleteEmployee = async (req, res)=>{
     const {id} = req.query;
     try{
-        await User.findByIdAndDelete(id);
+        await Employee.findByIdAndDelete(id);
 
         res.status(202).json({
             status: 'success',
-            message: 'user successfully deleted'
+            message: 'employee successfully deleted'
         })
 
     }catch(error){
@@ -131,10 +130,10 @@ exports.deleteUser = async (req, res)=>{
     }
 }
 
-exports.getAllUsers = async (req, res)=>{
+exports.getAllEmployees = async (req, res)=>{
     try{
-        // const data = await User.find().select('-password -otp -__v');
-        const features = new ApiFeatures(User.find(), req.query)
+        // const data = await Employee.find().select('-password -otp -__v');
+        const features = new ApiFeatures(Employee.find(), req.query)
             .limitFields()
             .pagination();
         const data = await features.query;
@@ -158,12 +157,12 @@ exports.sendOtp = async (req, res) => {
     const {email} = req.body;
     
     try{
-        let user = await User.findOne({email});
+        let employee = await Employee.findOne({email});
         
         const sixDigitOtp = generateOtp();
         
-        user.otp = sixDigitOtp;
-        await user.save();
+        employee.otp = sixDigitOtp;
+        await employee.save();
         const mailOptions = {
             from: process.env.EMAIL,
             to: email,
@@ -189,22 +188,22 @@ exports.sendOtp = async (req, res) => {
 exports.resetpassword = async (req, res) => {
     const {email, otp, newPassword} = req.body;
     try{
-        let user = await User.findOne({email});
-        if(otp !== user.otp){
+        let employee = await Employee.findOne({email});
+        if(otp !== employee.otp){
             throw new Error("Otp is not valid!");
         }
         const hash = bcrypt.hashSync(newPassword, saltRounds);
-        user.password = hash;
-        user.otp = '';
-        await user.save();
-        user = user.toObject();
-        delete user.password
+        employee.password = hash;
+        employee.otp = '';
+        await employee.save();
+        employee = employee.toObject();
+        delete employee.password
 
         res.status(201).json({
             status: 'success',
             message: 'Password has been changed successfully!',
             body: {
-                user
+                employee
             }
             
         })

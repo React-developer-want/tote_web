@@ -1,18 +1,18 @@
 import React from 'react';
 import MetaTags from '../../components/meta-tags';
 import FormSection from './formSection';
-import './user-details.scss';
+import './employee-details.scss';
 
 const TopSection = (props) => {
-  return <div className="userDetails-topSection">
+  return <div className="employeeDetails-topSection">
     <div className="main-title">{props.title}</div>
   </div>
 }
 
-const UserDetails = (props) => {
+const EmployeeDetails = (props) => {
   return (
-    <div className='userDetails-page'>
-      <div className="userDetails-container">
+    <div className='employeeDetails-page'>
+      <div className="employeeDetails-container">
         <MetaTags {...props.metaData}/>
         <TopSection {...props.topSection}/>
         <FormSection {...props.formSection}/>
@@ -21,4 +21,4 @@ const UserDetails = (props) => {
   )
 }
 
-export default UserDetails
+export default EmployeeDetails

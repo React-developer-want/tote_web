@@ -1,8 +1,8 @@
 import { fetchUrl } from "../../utils/fetchUrl";
 import { getLocalStorageKey } from "../../utils/localStorage";
 
-export const getAllUsers = async ()=>{
-    const url = process.env.REACT_APP_GET_USERS_API;
+export const getAllEmployees = async ()=>{
+    const url = process.env.REACT_APP_GET_EMPLOYEES_API;
     const token = getLocalStorageKey('token');
     
     const headers = new Headers();

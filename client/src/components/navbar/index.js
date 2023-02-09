@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { signout } from '../../services/login/signout';
 import { isHeaderHidden } from '../../utils/isHeaderHidden';
-import { getUserDetails } from '../../services/users/user-details';
+import { getEmployeeDetails } from '../../services/employees/employee-details';
 import { mapNavbarData } from '../../data/navbarData';
 import { checkLoginStatus } from '../../utils/checkLogin';
 import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
@@ -41,18 +41,18 @@ const Navbar = () => {
         }
       }, [location]);
 
-    const syncUserDetails = async ()=>{
-        const response = await getUserDetails();
+    const syncEmployeeDetails = async ()=>{
+        const response = await getEmployeeDetails();
         if(response.status === 'unauthorized'){
             navigate('/login');
             sendErrorNotification('Session expired login again!')
         }
-        setHeaderData(mapNavbarData(response?.body?.user));
+        setHeaderData(mapNavbarData(response?.body?.employee));
     }
 
     useEffect(()=>{
         if(!headerHidden){
-            syncUserDetails();
+            syncEmployeeDetails();
         }
     },[headerHidden])
 
@@ -81,10 +81,10 @@ const Navbar = () => {
 
         </div>
         <div className="profile-section">
-            <div className="user-icon">
+            <div className="employee-icon">
                 <UserIcon/>
             </div>
-            <span> Hi {headerData?.username?.split(' ')[0]} </span>
+            <span> Hi {headerData?.employeeName?.split(' ')[0]} </span>
         </div>
     </div>
   )

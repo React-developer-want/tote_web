@@ -1,8 +1,8 @@
 import { fetchUrl } from "../../utils/fetchUrl";
 import { getLocalStorageKey } from "../../utils/localStorage";
 
-export const getUserDetails = async ()=>{
-    const url = process.env.REACT_APP_USER_DETAILS_API;
+export const getEmployeeDetails = async ()=>{
+    const url = process.env.REACT_APP_EMPLOYEE_DETAILS_API;
     const token = getLocalStorageKey('token');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -11,8 +11,8 @@ export const getUserDetails = async ()=>{
     return await fetchUrl(url, requestOptions);
 }
 
-export const getUserDetailsById = async (id)=>{
-    const url = process.env.REACT_APP_USER_DETAILS_API+'?id='+id;
+export const getEmployeeDetailsById = async (id)=>{
+    const url = process.env.REACT_APP_EMPLOYEE_DETAILS_API+'?id='+id;
     const token = getLocalStorageKey('token');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -21,8 +21,8 @@ export const getUserDetailsById = async (id)=>{
     return await fetchUrl(url, requestOptions);
 }
 
-export const updateUserDetails = async (id, details) => {
-    const url = process.env.REACT_APP_UPDATE_USER_API+'?id='+id;
+export const updateEmployeeDetails = async (id, details) => {
+    const url = process.env.REACT_APP_UPDATE_EMPLOYEE_API+'?id='+id;
     const token = getLocalStorageKey('token');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -34,8 +34,8 @@ export const updateUserDetails = async (id, details) => {
     return await fetchUrl(url, requestOptions);
 }
 
-export const deleteUser = async (id) => {
-    const url = process.env.REACT_APP_DELETE_USER_API+'?id='+id;
+export const deleteEmployee = async (id) => {
+    const url = process.env.REACT_APP_DELETE_EMPLOYEE_API+'?id='+id;
     const token = getLocalStorageKey('token');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

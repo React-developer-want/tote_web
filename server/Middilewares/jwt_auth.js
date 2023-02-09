@@ -16,7 +16,7 @@ const verifyToken = (req, res, next) =>{
         
         const decode = jwt.verify(token, process.env.ACCESS_TOKEN);
 
-        req.user = decode;
+        req.employee = decode;
 
     }catch(error){
         return res.status(401).json({

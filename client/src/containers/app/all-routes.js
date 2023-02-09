@@ -4,16 +4,20 @@ import Dashboard from '../dashboard';
 import loginData from '../../data/signin.json';
 import signupData from '../../data/signup.json';
 import resetPasswordData from '../../data/resetPasswordData.json';
-import Ledger from '../ledger';
-import Investments from '../investments';
-import Users from '../users';
-import Plans from '../plans';
+import Ledger from '../tasks';
+import Departments from '../departments';
+import Employees from '../employees';
+import Plans from '../projects';
 import ResetPassword from '../resetPassword';
 import {
   Navigate
 } from "react-router-dom";
-import UserDetails from '../users/userDetails';
-import userDetailsData from '../../data/userDetailsData.json';
+import EmployeeDetails from '../employees/employeeDetails';
+import employeeDetailsData from '../../data/employeeDetailsData.json';
+import TimeSheets from '../time-sheets';
+import Reports from '../reports';
+import Settings from '../settings';
+import Profile from '../profile';
 
 export const allRoutes = [
   {
@@ -33,24 +37,40 @@ export const allRoutes = [
     element: <Dashboard/>
   },
   {
-    path: '/ledger',
+    path: '/tasks',
     element: <Ledger/>
   },
   {
-    path: '/investments',
-    element: <Investments/>
+    path: '/departments',
+    element: <Departments/>
   },
   {
-    path: '/users',
-    element: <Users/>
+    path: '/employees',
+    element: <Employees/>
   },
   {
-    path: '/users/:id',
-    element: <UserDetails {...userDetailsData}/>
+    path: '/employees/:id',
+    element: <EmployeeDetails {...employeeDetailsData}/>
   },
   {
-    path: '/plans',
+    path: '/projects',
     element: <Plans/>
+  },
+  {
+    path: '/timesheets',
+    element: <TimeSheets/>
+  },
+  {
+    path: '/reports',
+    element: <Reports/>
+  },
+  {
+    path: '/settings',
+    element: <Settings/>
+  },
+  {
+    path: '/profile',
+    element: <Profile/>
   },
   {
     path: '/*',

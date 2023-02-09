@@ -6,13 +6,13 @@ const MainSection = (props) => {
     const navigate = useNavigate();
 
     const onClickRow = (row)=>{
-        navigate(`/users/${row.id}`);
+        navigate(`/employees/${row.id}`);
     }
 
   return (
-    <div className='user-mainSection'>
+    <div className='employee-mainSection'>
         
-        <TableComponent {...props.usersTable} onClickRow = {(row)=> onClickRow(row)}/>
+        <TableComponent {...props.employeesTable} onClickRow = {(row)=> onClickRow(row)}/>
     </div>
   )
 }

@@ -3,34 +3,34 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/loader';
 import MetaTags from '../../components/meta-tags';
-import { mapUsersData } from '../../data/usersData';
+import { mapEmployeesData } from '../../data/employeesData';
 import { sendErrorNotification } from '../../services/notifications';
-import { getAllUsers } from '../../services/users/allUsers';
+import { getAllEmployees } from '../../services/employees/allEmployees';
 import MainSection from './main-section';
 import './styles.scss';
 
-const Users = () => {
+const Employees = () => {
   const navigate = useNavigate();
-  const [{metaData, mainSection}, setUsersData] = useState(mapUsersData([]));
+  const [{metaData, mainSection}, setEmployeesData] = useState(mapEmployeesData([]));
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect( ()=>{
-    const fetchUsers = async ()=>{
+    const fetchEmployees = async ()=>{
       setIsLoading(true);
-      const response = await getAllUsers();
+      const response = await getAllEmployees();
       if(response.status === 'TokenExpiredError'){
         navigate('/login');
         sendErrorNotification('Session expired login again!')
       }
-      setUsersData(mapUsersData(response.body.data));
+      setEmployeesData(mapEmployeesData(response.body.data));
       setIsLoading(false);
     }
-    fetchUsers();
+    fetchEmployees();
   },[])
   
   return ( isLoading ? <Loader/> :
-    <div className='users-page'>
-      <div className="users-container">
+    <div className='employees-page'>
+      <div className="employees-container">
         <MetaTags {...metaData}/>
         <MainSection {...mainSection}/>
       </div>
@@ -38,4 +38,4 @@ const Users = () => {
   )
 }
 
-export default Users
+export default Employees
