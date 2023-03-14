@@ -65,6 +65,10 @@ input:focus-visible {
   outline: none;
 }
 
+.text-primary {
+  color: #A31ACB;
+}
+
 @media only screen and (max-width: 600px) {
   .rnc__notification {
     width: 95vw !important;

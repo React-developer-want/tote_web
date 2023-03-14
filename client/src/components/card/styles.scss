@@ -1,0 +1,15 @@
+.card-component{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .card-wrapper{
+        width: 100%;
+        padding: 8px 4px;
+        background-color: #fff;
+        -webkit-box-shadow: 1px 4px 7px 1px rgba(148,142,148,1);
+        -moz-box-shadow: 1px 4px 7px 1px rgba(148,142,148,1);
+        box-shadow: 1px 4px 7px 1px rgba(148,142,148,1);
+        border-radius: 10%;
+    }
+}
