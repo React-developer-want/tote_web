@@ -1,11 +1,12 @@
 .departments-page{
-    
+    width: 100%;
+    overflow: hidden;
     .departments-container{
         padding: 20px;
         .main-section{
             width: 100%;
             .search input{
-                min-width: 600px;
+                width: 30%;
                 border: 2px solid #dbdfea;
                 border-radius: 5px;
                 height: 28px;
@@ -17,19 +18,19 @@
                     box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
                     outline: none;
                 }
-                @media only screen and (max-width: 600px) {
-
-                }
             }
             .cards-container{
-                margin-top: 40px;
-                display: flex;
-                gap: 20px;
+                max-width: 1200px;
+                margin: 40px auto;
+                display: grid;
+                gap: 1rem;
                 .custom-card{
                     text-decoration: none;
                     display: flex;
                     justify-content: center;
                     align-content: center;
+                    width: max-content;
+                    height: fit-content;
                     .content{
                         display: flex;
                         flex-direction: column;
@@ -47,9 +48,12 @@
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
     .main-section .search input{
-        min-width: unset;
-        width: 100%;
-    }                   
+        width: 100%; 
+    }       
+}
+
+@media (min-width: 700px) {
+    .main-section .cards-container { grid-template-columns: repeat(2, 1fr); }
 }

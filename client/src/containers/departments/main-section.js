@@ -15,7 +15,7 @@ const MainSection = (props) => {
   const [searchText, setSearchText] = useState('');
 
   const filteredData = searchText.length ? props.departmentsCards
-    .filter((item)=> (item.title.includes(searchText)))
+    .filter((item)=> (item.title.toLowerCase().includes(searchText.toLowerCase())))
     : props.departmentsCards;
 
   return (
