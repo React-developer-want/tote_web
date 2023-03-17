@@ -14,10 +14,13 @@ const Button = (props) => {
   }
   return (
     <div className={`btn ${props.button}`}>
-      {props.disable ?
-       <button disabled={true}> {props.text} </button> :
-       <button type={props.type} onClick={handleClick}> {props.text} </button>
-      }
+      <button 
+        type={props.type || 'button'}
+        onClick={!props.disabled && handleClick}
+        disabled={props.disable || false}
+        > 
+        {props.text} 
+      </button>
     </div>
   )
 }
