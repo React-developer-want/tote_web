@@ -64,7 +64,7 @@ const Navbar = () => {
 
     useEffect(()=>{
         document.addEventListener('mousedown', closeOpenMenus);
-    },[])
+    })
 
   return (
     headerHidden ? null : <div className='navbar' ref={navRef}>
