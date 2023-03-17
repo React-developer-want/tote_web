@@ -89,7 +89,7 @@ const TableComponent = (props) => {
             {filteredList.length ? (typeof sortColumnIndex === 'undefined' ? filteredList : filteredList.sort(applySorting)).slice((currentPage - 1) * pageSize, (currentPage) * pageSize).map((row, rowIndex) => (
               <tr {...(row.attributes || {})} key={`${rowIndex}-tr`}>
                 {row.cells.map((cell, index) => <td key={`${index}:${cell.value}`} {...(cell.attributes || {})}>{formatTableValue(cell)}</td>)}
-                {row.action ? <td><Button text={row.action} button="primary" data={row} onClickBtn={(row)=> props.onClickRow(row)}/></td> : null}
+                {row.action ? <td><Button text={row.action} button="primary" onClickBtn={()=> props.onClickRow(row)}/></td> : null}
               </tr>
             )) : (
               <tr key="empty-row">

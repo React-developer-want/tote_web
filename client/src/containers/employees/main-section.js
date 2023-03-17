@@ -11,8 +11,7 @@ const MainSection = (props) => {
 
   return (
     <div className='employee-mainSection'>
-        
-        <TableComponent {...props.employeesTable} onClickRow = {(row)=> onClickRow(row)}/>
+      <TableComponent {...props.employeesTable} onClickRow = {onClickRow}/>
     </div>
   )
 }

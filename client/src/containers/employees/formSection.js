@@ -75,8 +75,8 @@ const FormSection = (props) => {
         email: (key, props) => <SimpleInput key={key} {...{...props, value: email, onChange: (value) => setEmail(value)}}/>,
         address: (key, props) => <SimpleInput key={key} {...{...props, value: address, onChange: (value) => setAddress(value)}}/>,
         button: (key, props) => <Button key={key} {...{...props}}/>,
-        deleteButton: (key, props) => <Button key={key} {...{...props, delete: true, handleDelete:()=> handleDelete()}}/>,
-        cancelButton: (key, props) => <Button key={key} {...{...props, cancel:true, handleCancel:()=> navigate(-1)}}/>,
+        deleteButton: (key, props) => <Button key={key} {...{...props, delete: true, onClickBtn:()=> handleDelete()}}/>,
+        cancelButton: (key, props) => <Button key={key} {...{...props, cancel:true, onClickBtn:()=> navigate(-1)}}/>,
         dropdown: (key, props) => <Dropdown key={key} {...{...props, value:role, onChange: (value) => setRole(value)}}/>
     };
 

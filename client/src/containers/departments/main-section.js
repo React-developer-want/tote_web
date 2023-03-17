@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { WebIcon } from '../../components/icons';
+import Button from '../../components/button';
+import Modal from '../../components/modal';
+import CreateDepartForm from './create-depart-form';
 
 const CustomCard = (props) => (
   <a href={props.url} target="_blank" rel='noreferrer' className='custom-card'>
@@ -11,18 +14,52 @@ const CustomCard = (props) => (
   </a>
 )
 
+const Filter = (props) => (
+  <div className="filter">
+    <div className='search'>
+      <input 
+        value={props.searchText} 
+        onChange={(event) => props.setSearchText(event.target.value)} 
+        placeholder={props.search.placeholder} 
+      />
+    </div>
+    
+    <Button
+      text={props.button.text}
+      onClickBtn={props.handleCreateDepart}
+      button='primary'
+    />
+  </div>
+)
+
 const MainSection = (props) => {
   const [searchText, setSearchText] = useState('');
-
+  const [isDepartModal, setDepartModal] = useState(false);
   const filteredData = searchText.length ? props.departmentsCards
     .filter((item)=> (item.title.toLowerCase().includes(searchText.toLowerCase())))
     : props.departmentsCards;
 
+
   return (
     <div className='main-section'>
-      <div className='search'>
-        <input value={searchText} onChange={(event) => setSearchText(event.target.value)} placeholder={props.search.placeholder} />
-      </div>
+      <Filter
+        setSearchText={setSearchText}
+        searchText={searchText}
+        {...props.filter}
+        handleCreateDepart={() => setDepartModal(true)}
+      />
+
+      {isDepartModal && <Modal
+       className='create-depart'
+       title='Create Department Form'
+       onClickClose={() => setDepartModal(false)} 
+      >
+        <CreateDepartForm 
+          inputComponents={props.createDepartForm}
+          closeModal = {setDepartModal}
+        />
+      </Modal>}
+
       <div className="cards-container">
         {filteredData.map((item, index)=>(
           <CustomCard

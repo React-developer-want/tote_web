@@ -11,9 +11,14 @@ const SimpleInput = (props) => {
     return <div className='simpleInput-component'>
     <div className='simpleInput-wrapper'>
       <div className="text">
-        {props.label}
+        {props.label} {props.required && <span>*</span>}
       </div>
-      <input className='simpleInput-input' type={props.type} value={props.value} onChange={onChangeInput} placeholder={props.placeholder} />
+      <input className='simpleInput-input' 
+        type={props.type} value={props.value} 
+        onChange={onChangeInput} 
+        placeholder={props.placeholder} 
+        required={props.required || false}
+      />
     </div>
   </div>
 }
