@@ -24,7 +24,6 @@ const FormSection = (props) => {
     try{
 
       const response = await signin(email, password);
-      console.log(response);
       if(response.status === 'success'){
         setLocalStorageKey('token', response.token);
         sendSuccessNotification('Welcome '+ response.body.employee.name);
