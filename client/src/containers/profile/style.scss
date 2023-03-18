@@ -1,0 +1,28 @@
+.profile-page{
+    .profile-container{
+        padding: 3rem 1rem;
+        .profile-main-section .profile-details{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .custom-input{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-transform: capitalize;
+                .field{
+                    font-size: larger;
+                    font-weight: bolder;
+                    width: 20%;
+                    border-right: 4px solid rgb(96, 95, 95);
+                    border-style: none dotted none none;
+                }
+                .value{
+                    width: 50%;
+                    border-bottom: 1px solid rgb(96, 95, 95);
+                    border-style: none none dotted none;
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-const MainSection = () => {
+const CustomInput = (props) => (
+  <div className='custom-input'>
+    <div className="field"> {props.field} </div>
+    <div className="value"> {props.value} </div>
+  </div>
+)
+
+const Details = (props) => (
+  <div className='profile-details'>
+    {props.details.map((item, index)=>(
+      <CustomInput
+        key={item.field+index}
+        {...item}
+      />
+    ))}
+  </div>
+)
+
+const MainSection = (props) => {
   return (
-    <div>
-      HEllo this is main section
+    <div className='profile-main-section'>
+      <Details
+        details={props.userDetails}
+      />
     </div>
   )
 }
