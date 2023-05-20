@@ -153,7 +153,7 @@ exports.getAllEmployees = async (req, res)=>{
     }
 }
 
-exports.sendOtp = async (req, res) => {
+exports.resetPasswordSendOTP = async (req, res) => {
     const {email} = req.body;
     
     try{
@@ -185,7 +185,7 @@ exports.sendOtp = async (req, res) => {
     }
 }
 
-exports.resetpassword = async (req, res) => {
+exports.resetPassword = async (req, res) => {
     const {email, otp, newPassword} = req.body;
     try{
         let employee = await Employee.findOne({email});

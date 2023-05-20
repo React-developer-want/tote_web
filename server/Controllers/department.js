@@ -4,7 +4,7 @@ exports.createDepartment = async (req, res) => {
    const departObj = req.body;
    try{
         const existingDepartment = await Department.find({title: departObj.title});
-        if(existingDepartment){
+        if(existingDepartment.length !== 0){
             return res.status(409).json({
                 status: 'failed',
                 message: 'the department already exists.'

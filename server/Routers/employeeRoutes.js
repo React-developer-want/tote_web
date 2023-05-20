@@ -9,9 +9,9 @@ router.route('/login').post(checkLoginData, employeeControllers.login);
 
 router.route('/signup').post(employeeControllers.signup);
 
-router.route('/forgotPassword').post(checkOtpData, employeeControllers.sendOtp);
+router.route('/forgotPassword').post(checkOtpData, employeeControllers.resetPasswordSendOTP);
 
-router.route('/resetPassword').post(employeeControllers.resetpassword);
+router.route('/resetPassword').post(employeeControllers.resetPassword);
 
 router.route('/employeeDetails').get(verifyToken, employeeControllers.employeeDetails);
 
