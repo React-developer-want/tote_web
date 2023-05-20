@@ -26,8 +26,7 @@ exports.createTask = async (req, res) => {
 
     res.status(201).json({
       status: "success",
-      message: "successfully created the task.",
-      task,
+      message: "successfully created the task."
     });
   } catch (error) {
     res.status(403).json({

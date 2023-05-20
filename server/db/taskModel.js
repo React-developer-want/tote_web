@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
     },
     start_date: {
         type: Date,
-        default: new Date()
+        default: Date.now
     },
     due_date: {
         type: Date,
@@ -30,6 +30,6 @@ const schema = new mongoose.Schema({
     timestamps: true
 });
 
-const Task = mongoose.model("task", schema);
+const Task = mongoose.model("tasks", schema);
 
 module.exports = Task;
