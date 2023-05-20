@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import Email from '../../components/email';
 import Password from '../../components/password';
-import Loader from '../../components/loader';
 import { signin } from '../../services/login/signin';
 import { sendErrorNotification, sendInfoNotification, sendSuccessNotification } from '../../services/notifications';
 import { checkAllTrue } from '../../utils/check-all';
@@ -15,11 +14,10 @@ const FormSection = (props) => {
   const navigate = useNavigate();
   const [[email, isEmailValid], setEmail] = useState(['', false]);
   const [[password, isPasswordValid], setPassword] = useState(['', false]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmitHandle = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
+    props.setIsLoading(true);
     if (!checkAllTrue([isEmailValid, isPasswordValid])) {
       sendInfoNotification('Form Incomplete: Please fill details below.');
       return;
@@ -36,7 +34,7 @@ const FormSection = (props) => {
     }catch(error){
       sendErrorNotification(error.message);
     }
-    setIsLoading(false);
+    props.setIsLoading(false);
   };
 
   const formComponents = {
@@ -46,7 +44,7 @@ const FormSection = (props) => {
     link: (key, props) => <Link key={key} className="signup-link" {...props}>{props.text}</Link>
   };
 
-  return ( isLoading ? <Loader/> : 
+  return (
   <div className="form-section">
     <form onSubmit={onSubmitHandle}>
       {props.inputComponents.map(({ component, details }, index) => {
