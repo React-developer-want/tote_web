@@ -7,6 +7,7 @@ const projectSchema = new mongoose.Schema({
   },
   status: {
     type: String,
+    enum: ['active', 'completed', 'rejected'],
     default: 'active'
   },
   start_date: {
