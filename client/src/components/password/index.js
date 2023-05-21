@@ -29,10 +29,10 @@ const Password = (props) => {
     <div className="password-wrapper">
       <div className="text">{props.label}</div>
       <input className="password-input" type={showPwd ? "text" : "password"} value={props.value} onFocus={onFocusPassword} onBlur={onBlurPassword} onChange={onChangePassword} {...rest} />
+      <div className="error-icon"> <ExclamationMark/> </div>
       <div className="show-password" onClick={handleShowPwd}>
         {showPwd ? <CloseEyeIcon/> : <OpenEyeIcon/>}
       </div>
-      <div className="error-icon"> <ExclamationMark/> </div>
     </div>
   </div>
 };

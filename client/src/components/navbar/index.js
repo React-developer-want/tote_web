@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React,{ useState,useRef } from 'react';
-import { HamburgerIcon, UserIcon } from '../icons';
+import { DoubleArrow, HamburgerIcon, UserIcon } from '../icons';
 import './style.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -68,9 +68,11 @@ const Navbar = () => {
 
   return (
     headerHidden ? null : <div className='navbar' ref={navRef}>
-        <div className={`ham-icon ${isNavActive ? 'active' : ''}`} onClick={handleNav}> <HamburgerIcon/> </div>
+        <div className="ham-icon" onClick={handleNav}> <HamburgerIcon/> </div>
         <h1 className="header"> {header} </h1>
         <div className={`container ${isNavActive ? 'active' : ''}`}>
+
+            <div className="closer"> <DoubleArrow onClick={handleNav}/> </div>
 
             {headerData.navbarItems.map((item, index)=>{
                 return <Link key={index+item.id} to={item.to} onClick={handleNav} className={`${location.pathname === item.to ? 'active' : ''}`} > {item.title} </Link>
