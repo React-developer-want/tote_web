@@ -10,13 +10,24 @@
         position: absolute;
         z-index: 999;
         left: 0;
-        top: 56px;
+        top: 0.2rem;
         overflow: none;
         transform: translate(-110%);
         transition: transform 0.3s ease-in;
         &.active{
             display: inline-block;
             transform: translate(0);
+        }
+        .closer{
+            text-align: end;
+            background: transparent;
+            padding-right: 0.4rem;
+            svg{
+                width: 3rem;
+                height: 2rem;
+                cursor: pointer;
+                padding: 0 0.6rem;
+            }
         }
         .logout{
             padding: 16px;
@@ -59,13 +70,14 @@
 }
 
 .navbar{
-    background: rgb(145,99,176);
-    background: linear-gradient(90deg, rgba(145,99,176,1) 0%, rgba(167,115,115,1) 50%, rgba(252,176,69,1) 100%);
+    background: #145996;
     width: 100%;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0px;
     .header{
         margin: 0;
         display: inline-block;
@@ -85,10 +97,6 @@
     svg{
         fill: #f1f1f1;
     }
-}
-
-.navbar .ham-icon.active{
-    transform: rotate(90deg);
 }
 
 .navbar a{

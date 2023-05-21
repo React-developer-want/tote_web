@@ -39,6 +39,7 @@ exports.createTask = async (req, res) => {
 exports.getAllTasks = async (req, res) => {
   try {
     const reports = await Task.find()
+      .select('-__v')
       .populate("assigned_by", "-_id name")
       .populate("assigned_to", "-_id name");
 

@@ -15,8 +15,8 @@ const schema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Up Next', 'In Progress', 'Done'],
-        default: 'Up Next'
+        enum: ['up next', 'in progress', 'done', 'backlog', 'on hold', 'questions'],
+        default: 'up next'
     },
     assigned_by: {
         type: mongoose.Schema.Types.ObjectId,
