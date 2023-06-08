@@ -5,13 +5,13 @@ import Modal from '../../components/modal';
 import CreateDepartForm from './create-depart-form';
 
 const CustomCard = (props) => (
-  <a href={props.url} target="_blank" rel='noreferrer' className='custom-card'>
+  <div className='custom-card' onClick={()=> props.onClick(props.url)}>
     <span className='icon'><WebIcon/></span>
     <span className='content'>
       <strong>{props.title}</strong>
       <label className='text-primary'>{props.url}</label>
     </span>
-  </a>
+  </div>
 )
 
 const Filter = (props) => (
@@ -39,6 +39,9 @@ const MainSection = (props) => {
     .filter((item)=> (item.title.toLowerCase().includes(searchText.toLowerCase())))
     : props.departmentsCards;
 
+  const handleClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 
   return (
     <div className='main-section'>
@@ -65,6 +68,7 @@ const MainSection = (props) => {
           <CustomCard
             key={item.title+index}
             {...item}
+            onClick={handleClick}
           />
         ))}
       </div>

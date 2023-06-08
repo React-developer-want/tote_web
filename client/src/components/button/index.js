@@ -2,9 +2,8 @@ import React from 'react';
 import './style.scss';
 
 const Button = (props) => {
-  
   return (
-    <div className={`btn ${props.button}`}>
+    <div className={`btn ${props?.button || ''}`}>
       <button 
         type={props.type || 'button'}
         onClick={!props.disabled && props.onClickBtn}

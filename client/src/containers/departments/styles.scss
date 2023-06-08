@@ -11,33 +11,41 @@
                 .btn button{
                     padding: 0px 8px;
                 }
-                .search input{
-                    width: 100%;
-                    border: 2px solid #dbdfea;
-                    border-radius: 5px;
-                    height: 28px;
-                    font-size: 16px;
-                    padding: 16px 0px 16px 16px;
-                    &:focus{
-                        -webkit-box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
-                        -moz-box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
-                        box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
-                        outline: none;
+                .search {
+                    width: 20rem;
+                    input{
+                       width: 100%;
+                       border: 2px solid #dbdfea;
+                       border-radius: 5px;
+                       height: 28px;
+                       font-size: 16px;
+                       padding: 16px 0px 16px 16px;
+                       &:focus{
+                           -webkit-box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
+                           -moz-box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
+                           box-shadow: 1px 1px 12px 4px rgba(252,36,252,0.78);
+                           outline: none;
+                       }
                     }
                 }
             }
             .cards-container{
                 max-width: 1200px;
                 margin: 40px auto;
-                display: grid;
+                display: flex;
+                flex-wrap: wrap;
                 gap: 1rem;
                 .custom-card{
+                    cursor: pointer;
                     text-decoration: none;
                     display: flex;
-                    justify-content: center;
                     align-content: center;
-                    width: max-content;
-                    height: fit-content;
+                    width: 20rem;
+                    padding: 1rem;
+                    box-shadow: 0 1px 5px #d9cfcf;
+                    &:hover {
+                        box-shadow: 0 5px 5px #d9cfcf;
+                    }
                     .content{
                         display: flex;
                         flex-direction: column;
@@ -59,8 +67,4 @@
     .main-section .search input{
         width: 100%; 
     }       
-}
-
-@media (min-width: 700px) {
-    .main-section .cards-container { grid-template-columns: repeat(2, 1fr); }
 }

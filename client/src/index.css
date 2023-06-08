@@ -47,6 +47,13 @@
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-color: #145996 #afaeae;
+  scrollbar-width: 10px;
+  scrollbar-width: thin;
+}
 
 body {
   margin: 0;
@@ -55,10 +62,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #364a63;
   font-size: 14px;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 input:focus-visible {

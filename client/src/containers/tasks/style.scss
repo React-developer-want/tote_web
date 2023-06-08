@@ -3,8 +3,10 @@
   background-size: cover;
   height: 100vh;
   .tasks-container{
+    height: 100%;
     padding: 3rem 1rem;
     .tasks-main-section{
+      height: 100%;
       width: 100%;
       display: flex;
       justify-content: flex-start;
@@ -43,9 +45,32 @@
             border-radius: 5px;
             min-width: 16rem;
             min-height: 3rem;
-            &:hover{
-              box-shadow: 0 5px 5px #96999c;
+            transition: padding 0.3s;
+            &:hover {
+              padding: 1rem;
             }
+            &.new-task {
+              min-height: auto;
+              background: #0b7ee2;
+              color: #fff;
+              font-weight: bold;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .task-details-form {
+        border: 1px solid #0ceda1;
+        border-radius: 6px;
+        padding: 4px;
+        .task-details-btns {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin: 2rem auto 0.5rem;
+          gap: 1rem;
+          .btn{
+            width: 40%;
           }
         }
       }

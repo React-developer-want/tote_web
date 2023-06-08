@@ -2,7 +2,7 @@
   .projects-container{
     padding: 3rem 1rem;
     .projects-main-section .project-card{
-      margin-bottom: 1rem;
+      margin-bottom: 4rem;
       .title{
         font-size: 2rem;
         font-weight: bold;
@@ -36,10 +36,9 @@
         }
         .flag{
           display: inline-block;
-          background: #be92e6;
-          color: #fff;
-          padding: 0.4rem;
-          border-radius: 50%;
+          color: #608906;
+          font-weight: bolder;
+          text-transform: uppercase;
         }
         .entity-pairs{
           display: flex;

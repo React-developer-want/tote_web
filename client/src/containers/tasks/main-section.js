@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../../components/modal';
+import TaskDetailsForm from './task-details-form';
 
 const TasksComponent = (props) => (
   <div className="tasks-card">
@@ -9,6 +11,9 @@ const TasksComponent = (props) => (
           <div className="name">{item.title}</div>
         </div>
       ))}
+      <div className="new-task container" onClick={props.onClickNew}>
+        + Add new task
+      </div>
     </div> : (
     <div className="no-data">
       No Data to Show
@@ -17,21 +22,42 @@ const TasksComponent = (props) => (
   </div>
 );
 
+const TaskDetailsModal = (props) => (
+  <Modal 
+    className='task-modal'
+    title={props.title}
+    onClickClose={props.handleModalClose}
+  >
+    <TaskDetailsForm details={props.data} closeModal={props.handleModalClose}/>
+  </Modal>
+)
+
 const MainSection = (props) => {
-  const { upNextTasks, inProgressTasks, completedTasks, onHoldTasks, backlogTasks, questions } = props;
+  const [allTasksDetails, setAllTasksDetails] = useState(props.allTasksDetails);
+  const [isTaskModalVisible, setIsTaskModalVisible] = useState(false);
+  const [taskModalData, setTaskModalData] = useState({ title: 'Task details' });
+
+  const handleModalClose = () => (setIsTaskModalVisible(false));
 
   const handleCardClick = (details) => {
-    console.log({details});
+    setTaskModalData({
+      title: details.title,
+      data: details
+    });
+    setIsTaskModalVisible(true);
+  }
+
+  const handleAddNew = (index, list) => {
+    console.log({index, list});
   }
 
   return (
     <div className='tasks-main-section'>
-      <TasksComponent title='backlog' list={backlogTasks} onClick={handleCardClick}/>
-      <TasksComponent title='Up next' list={upNextTasks} onClick={handleCardClick}/>
-      <TasksComponent title='In progress' list={inProgressTasks} onClick={handleCardClick}/>
-      <TasksComponent title='on hold' list={onHoldTasks} onClick={handleCardClick}/>
-      <TasksComponent title='Completed' list={completedTasks} onClick={handleCardClick}/>
-      <TasksComponent title='questions' list={questions} onClick={handleCardClick}/>
+      {isTaskModalVisible && <TaskDetailsModal title={taskModalData.title} handleModalClose={handleModalClose} data={taskModalData?.data}/>}
+      {allTasksDetails.map(({ title, data }, index)=> {
+        const key = `task-details-${title}`;
+        return <TasksComponent key={key} title={title} list={data} onClick={handleCardClick} onClickNew={()=> handleAddNew(index, data)}/>
+      })}
     </div>
   )
 }

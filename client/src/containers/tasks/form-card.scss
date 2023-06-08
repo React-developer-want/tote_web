@@ -1,0 +1,49 @@
+.form-card {
+  padding: 8px;
+  .form-card-main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .input-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .form-card-label {
+        width: 30%;
+        font-size: 1.2rem;
+      }
+      .form-card-input {
+        width: 70%;
+        border-bottom: 3px solid #a9a0a0;
+        input[type="text"] {
+          width: 100%;
+          border: none;
+          padding: 12px 16px;
+          font-size: 16px;
+        }
+      }
+      &.dropdown-input .form-card-input {
+        border-bottom: none;
+        select {
+          width: 100%;
+          padding: 8px;
+          font-size: 16px;
+          font-weight: lighter;
+          border: none;
+          background: #0a83ec;
+          color: #fff;
+          letter-spacing: 1.2px;
+          border-radius: 5px;
+        }
+      }
+      &.date-input .form-card-input {
+        border-bottom: none;
+        input[type="date"]{
+          border: none;
+          font-size: 16px;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

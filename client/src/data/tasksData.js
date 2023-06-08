@@ -7,12 +7,32 @@ export const mapTasksData = (tasks = []) => {
       path: '/assests/kanban-background.jpg'
     },
     mainSection: {
-      backlogTasks: tasks?.filter((task)=> task.status.toLowerCase() === 'backlog') || [],
-      upNextTasks: tasks?.filter((task)=> task.status.toLowerCase() === 'up next') || [],
-      inProgressTasks: tasks?.filter((task)=> task.status.toLowerCase() === 'in progress') || [],
-      onHoldTasks: tasks?.filter((task)=> task.status.toLowerCase() === 'on hold') || [],
-      completedTasks: tasks?.filter((task)=> task.status.toLowerCase() === 'done') || [],
-      questions: tasks?.filter((task)=> task.status.toLowerCase() === 'questions') || [],
+      allTasksDetails: [
+        {
+          title: 'backlog', 
+          data: tasks?.filter((task)=> task.status.toLowerCase() === 'backlog') || [],
+        },
+        {
+          title: 'up next', 
+          data: tasks?.filter((task)=> task.status.toLowerCase() === 'up next') || [],
+        },
+        {
+          title: 'in progress', 
+          data: tasks?.filter((task)=> task.status.toLowerCase() === 'in progress') || [],
+        },
+        {
+          title: 'on hold', 
+          data: tasks?.filter((task)=> task.status.toLowerCase() === 'on hold') || [],
+        },
+        {
+          title: 'completed', 
+          data: tasks?.filter((task)=> task.status.toLowerCase() === 'done') || [],
+        },
+        {
+          title: 'questions', 
+          data: tasks?.filter((task)=> task.status.toLowerCase() === 'questions') || [],
+        },
+      ]
     }
   }
 }
