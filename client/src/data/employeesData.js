@@ -7,6 +7,8 @@ export const mapEmployeesData = (data=[])=>{
       mainSection:{
 
         employeesTable: {
+          isFilters: true,
+          isPagination: true,
           rowLabels: ['Full Name', 'Email id', 'Phone Number', 'Address', 'Role', 'Action'],
           rows: data?.map((item) => ({
             action: 'Update',

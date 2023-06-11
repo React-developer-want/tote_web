@@ -21,4 +21,6 @@ router.route('/deleteEmployee').delete(verifyToken, employeeControllers.deleteEm
 
 router.route('/allEmployees').get(verifyToken, employeeControllers.getAllEmployees);
 
+router.route('/employees-count').get(verifyToken, employeeControllers.getEmployeesCount);
+
 module.exports = router;

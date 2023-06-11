@@ -27,7 +27,7 @@ const Tasks = () => {
     <div className='tasks-page' style={{backgroundImage: `url(${backgroundImage.path})`}}>
       <div className="tasks-container">
         <MetaTags {...metaData} />
-        <MainSection {...mainSection} />
+        <MainSection {...mainSection} fetchTasks={fetchTasks}/>
       </div>
     </div>
   )

@@ -28,21 +28,6 @@ export const mapNavbarData = (data)=>{
                 id: 'navitem-5'
             },
             {
-                to: '/timesheets',
-                title: 'Timesheets',
-                id: 'navitem-6'
-            },
-            {
-                to: '/reports',
-                title: 'Reports',
-                id: 'navitem-7'
-            },
-            {
-                to: '/settings',
-                title: 'Settings',
-                id: 'navitem-7'
-            },
-            {
                 to: '/profile',
                 title: 'Profile',
                 id: 'navitem-8'

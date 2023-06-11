@@ -56,3 +56,19 @@ exports.deleteDepartment = async (req, res) => {
         })
     }
 }
+
+exports.getDepartmentCount = async (_, res) => {
+    try{
+        const count = await Department.countDocuments();
+
+        res.status(202).json({
+            status: 'success',
+            response: count
+        })
+    }catch(error){
+        res.status(500).json({
+            status: 'failed',
+            message: error.message
+        })
+    }
+};

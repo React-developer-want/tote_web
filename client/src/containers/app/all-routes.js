@@ -7,16 +7,13 @@ import resetPasswordData from '../../data/resetPasswordData.json';
 import Ledger from '../tasks';
 import Departments from '../departments';
 import Employees from '../employees';
-import Plans from '../projects';
+import Projects from '../projects';
 import ResetPassword from '../resetPassword';
 import {
   Navigate
 } from "react-router-dom";
 import EmployeeDetails from '../employees/employeeDetails';
 import employeeDetailsData from '../../data/employeeDetailsData.json';
-import TimeSheets from '../time-sheets';
-import Reports from '../reports';
-import Settings from '../settings';
 import Profile from '../profile';
 
 export const allRoutes = [
@@ -54,19 +51,7 @@ export const allRoutes = [
   },
   {
     path: '/projects',
-    element: <Plans/>
-  },
-  {
-    path: '/timesheets',
-    element: <TimeSheets/>
-  },
-  {
-    path: '/reports',
-    element: <Reports/>
-  },
-  {
-    path: '/settings',
-    element: <Settings/>
+    element: <Projects/>
   },
   {
     path: '/profile',

@@ -1,32 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { mapTaskDetails } from '../../data/taskDetails';
+import React, { useEffect, useState } from 'react';
+import { mapNewTaskData } from '../../data/newTaskForm';
+import { getAllEmployees } from '../../services/employees/allEmployees';
+import { getLocalStorageKey } from '../../utils/localStorage';
 import FormCard from './form-card';
 import Button from '../../components/button';
-import { updateTask } from '../../services/tasks/tasks';
+import { createTask } from '../../services/tasks/tasks';
 import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
-import { getAllEmployees } from '../../services/employees/allEmployees';
 
-const TaskDetailsForm = (props) => {
+const NewTaskForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [{ allFields, initialState }, setTaskDetails] = useState(mapTaskDetails([], props.details));
+  const [{ allFields }, setNewTaskData] = useState(mapNewTaskData([], props.status));
 
   useEffect(()=> {
     const syncRequiredData = async () => {
       setIsLoading(true);
       const allEmployees = await getAllEmployees();
-      setTaskDetails(mapTaskDetails(allEmployees.body.data, props.details));
+      setNewTaskData(mapNewTaskData(allEmployees.body.data, props.status));
       setIsLoading(false);
     }
     syncRequiredData();
   }, []);
 
   const handleSubmit = async () => {
-    setIsLoading(true);
     const [title, start_date, due_date, status, assigned_to] = allFields.map((item)=> item.value);
-    const details = { title, start_date, due_date, status, assigned_to };
-    const result = await updateTask(initialState._id, details);
+    const details = {
+      title, start_date, due_date, status, assigned_to, assigned_by: getLocalStorageKey('id')
+    };
+    setIsLoading(true);
+    const result = await createTask(details);
     if(result.status === 'success'){
-      sendSuccessNotification('The task has been updated successfully');
+      sendSuccessNotification('The task has been created successfully');
       props.closeModal();
       props.fetchTasks();
     }else{
@@ -43,7 +46,7 @@ const TaskDetailsForm = (props) => {
     onChange: ({ target: { value } }) => {
       const list = allFields.map((item)=> item);
       list[index].value = value;
-      setTaskDetails((prev)=> ({
+      setNewTaskData((prev)=> ({
         ...prev, 
         allFields: list
       }));
@@ -56,7 +59,7 @@ const TaskDetailsForm = (props) => {
       <div className="task-details-btns">
         <Button text="Cancel" onClickBtn={props.closeModal}/>
         <Button 
-          text={isLoading ? "...Saving" : "Save Changes" }
+          text={isLoading ? "...Loading" : "Save Changes" }
           button="primary" 
           onClickBtn={handleSubmit}
         />
@@ -65,4 +68,4 @@ const TaskDetailsForm = (props) => {
   )
 }
 
-export default TaskDetailsForm
+export default NewTaskForm

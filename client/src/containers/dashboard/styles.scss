@@ -1,0 +1,45 @@
+.dashboard-page{
+  width: 100%;
+  overflow: hidden;
+  .dashboard-container {
+    padding: 20px;
+    .top-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      .card-component {
+        width: 15rem;
+        cursor: pointer;
+        .card-wrapper {
+          background-color: #145996;
+          color: #fff;
+          border-radius: 5px;
+          text-align: center;
+          padding: 1rem 2rem;
+          font-size: 20px;
+          .card-title {
+            text-transform: capitalize;
+          }
+          .card-content {
+            color: rgb(243, 243, 128);
+          }
+        }
+      }
+    }
+    .main-section {
+      margin-top: 4rem;
+      box-shadow: 0 2px 12px #9da1a5;
+      padding: 1rem 4px;
+      border-radius: 0.6rem;
+      .header {
+        margin: 1rem auto;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 2px solid #787c80;
+        border-radius: 10px;
+      }
+    }
+  }
+}

@@ -153,6 +153,22 @@ exports.getAllEmployees = async (req, res)=>{
     }
 }
 
+exports.getEmployeesCount = async (_, res) => {
+    try {
+        const count = await Employee.countDocuments();
+        
+        res.status(200).json({
+            status: 'success',
+            response: count
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed',
+            message: error.message
+        })
+    }
+}
+
 exports.resetPasswordSendOTP = async (req, res) => {
     const {email} = req.body;
     

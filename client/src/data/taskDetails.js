@@ -1,6 +1,6 @@
 import { getInputDate } from "../utils/date-handler";
 
-export const mapTaskDetails = (details) => {
+export const mapTaskDetails = (allEmployees = [], details = {}) => {
  return {
     initialState: details ?? {},
     allFields: [
@@ -40,19 +40,14 @@ export const mapTaskDetails = (details) => {
         }
       },
       {
-        label: 'Assigned by',
-        value: details?.assigned_by?.name || '...',
-        type: 'text',
-        details: {
-          placeholder: 'Assigned by'
-        }
-      },
-      {
         label: 'Assigned to',
-        value: details?.assigned_to?.name || '...',
-        type: 'text',
+        value: allEmployees.find((employee)=> employee.name === details?.assigned_to?.name),
+        type: 'dropdown',
         details: {
-          placeholder: 'Assigned to'
+          className: 'dropdown',
+          list: allEmployees.map((employee)=> ({
+            value: employee._id, label: employee.name
+          }))
         }
       }
     ]

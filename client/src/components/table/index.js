@@ -15,14 +15,14 @@ const formatTableValue = (cell) => {
 };
 
 const TableComponent = (props) => {
-  const [sortColumnIndex, setSortColumnIndex] = useState();
-  const [sortAscending, setSortAscending] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [searchText, setSearchText] = useState('');
   const {
     hideHeaderRow = false, tableAttributes = {}, rowLabels = [], rows = [],
   } = props;
+  const [sortColumnIndex, setSortColumnIndex] = useState();
+  const [sortAscending, setSortAscending] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(props?.isPagination ? 10 : rows.length);
+  const [searchText, setSearchText] = useState('');
 
   const filteredList = searchText.length ? rows.filter((item) => item.cells.reduce((acc, item) => `${item.value}`.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 || acc, false)) : rows;
 
@@ -51,11 +51,11 @@ const TableComponent = (props) => {
 
   return (
     <div className="table-component">
-      <div className="filters">
+      {props.isFilters && <div className="filters">
         <div className='search'>
           <input value={searchText} onChange={(event) => setSearchText(event.target.value)} placeholder="Search" />
         </div>
-        <div className='entries'>
+        {props?.isPagination && <div className='entries'>
           <span>Entries: </span>
           <select
             value={pageSize}
@@ -69,8 +69,8 @@ const TableComponent = (props) => {
             <option value="50">50</option>
             <option value="100">100</option>
           </select>
-        </div>
-      </div>
+        </div>}
+      </div>}
       <div className="table-wrapper">
         <table {...tableAttributes} cellSpacing="0">
           {hideHeaderRow ? null : (
@@ -89,7 +89,7 @@ const TableComponent = (props) => {
             {filteredList.length ? (typeof sortColumnIndex === 'undefined' ? filteredList : filteredList.sort(applySorting)).slice((currentPage - 1) * pageSize, (currentPage) * pageSize).map((row, rowIndex) => (
               <tr {...(row.attributes || {})} key={`${rowIndex}-tr`}>
                 {row.cells.map((cell, index) => <td key={`${index}:${cell.value}`} {...(cell.attributes || {})}>{formatTableValue(cell)}</td>)}
-                {row.action ? <td><Button text={row.action} button="primary" onClickBtn={()=> props.onClickRow(row)}/></td> : null}
+                {row?.action ? <td><Button text={row.action} button="primary" onClickBtn={()=> props.onClickRow(row)}/></td> : null}
               </tr>
             )) : (
               <tr key="empty-row">
@@ -99,9 +99,9 @@ const TableComponent = (props) => {
           </tbody>
         </table>
       </div>
-      <div className="pagination">
+      {props?.isPagination && <div className="pagination">
         {(new Array(Math.ceil(filteredList.length / pageSize))).fill(0).map((item, index) => <span key={item+index} onClick={() => setCurrentPage(index + 1)} className={`page-count ${index + 1 === currentPage ? 'active' : ''}`}>{index + 1}</span>)}
-      </div>
+      </div>}
     </div>
   );
 };
