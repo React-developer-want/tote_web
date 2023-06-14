@@ -3,7 +3,7 @@ import { getLocalStorageKey } from "../../utils/localStorage"
 
 export const getAllDepartments = async () => {
     const token = getLocalStorageKey('token');
-    const url = process.env.REACT_APP_GET_DEPARTMENTS_API;
+    const url = process.env.REACT_APP_BASE_URI + '/api/v1/departments/all-departments' ;
 
     const headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -15,7 +15,7 @@ export const getAllDepartments = async () => {
 
 export const getDepartmentsCount = async () => {
     const token = getLocalStorageKey('token');
-    const url = process.env.REACT_APP_GET_DEPARTMENTS_COUNT_API;
+    const url = process.env.REACT_APP_BASE_URI + '/api/v1/departments/department-count';
 
     const headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -27,7 +27,7 @@ export const getDepartmentsCount = async () => {
 
 export const createDepartment = async (details) => {
     const token = getLocalStorageKey('token');
-    const url = process.env.REACT_APP_CREATE_DEPARTMENT_API;
+    const url = process.env.REACT_APP_BASE_URI + '/api/v1/departments/create-department';
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

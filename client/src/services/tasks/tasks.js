@@ -3,7 +3,7 @@ import { fetchUrl } from '../../utils/fetchUrl';
 
 export const getAllTasks = async () => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_LIST_TASKS_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/tasks/all-tasks';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');
@@ -15,7 +15,7 @@ export const getAllTasks = async () => {
 
 export const createTask = async (details) => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_CREATE_TASK_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/tasks/create-task';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');
@@ -27,7 +27,7 @@ export const createTask = async (details) => {
 
 export const updateTask = async (id, details) => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_UPDATE_TASK_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/tasks/update-task';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');

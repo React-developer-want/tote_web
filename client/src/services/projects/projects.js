@@ -3,7 +3,7 @@ import { getLocalStorageKey } from '../../utils/localStorage';
 
 export const createProject = async (details) => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_CREATE_PROJECT_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/projects/create-project';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');
@@ -15,7 +15,7 @@ export const createProject = async (details) => {
 
 export const getProjectDetails = async (id) => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_GET_PROJECT_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/projects/project';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');
@@ -29,7 +29,7 @@ export const getProjectDetails = async (id) => {
 
 export const getListProjects = async () => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_LIST_PROJECTS_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/projects/list-projects';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');
@@ -41,7 +41,7 @@ export const getListProjects = async () => {
 
 export const updateProject = async (id, details) => {
   const token = getLocalStorageKey('token');
-  const url = process.env.REACT_APP_UPDATE_PROJECT_API;
+  const url = process.env.REACT_APP_BASE_URI + '/api/v1/projects/update-project';
 
   const headers = new Headers();
   headers.append('Content-Type','application/json');
