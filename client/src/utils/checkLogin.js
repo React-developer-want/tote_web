@@ -1,5 +1,6 @@
 import { sendErrorNotification } from '../services/notifications';
 import { getLocalStorageKey } from './localStorage';
+import { signout } from '../services/login/signout';
 
 export const checkLoginStatus = (location, navigate) =>{
     const now = Date.now();
@@ -11,6 +12,7 @@ export const checkLoginStatus = (location, navigate) =>{
     
     if(!exemptedList.includes(location.pathname)){
         if(!(token || email) || (expiry < now)){
+            signout();
             navigate('/login');
             sendErrorNotification('Access has expired please login again.');
             return;

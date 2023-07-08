@@ -23,9 +23,10 @@ const Header = () => {
 
   useEffect(()=> {
     checkLoginStatus(location, navigate);
-    setInterval(()=> {
+    const interval = setInterval(()=> {
       checkLoginStatus(location, navigate);
     }, 10000);
+    return () => clearInterval(interval);
   },[location]);
 
   return ( !isHidden ?

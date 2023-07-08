@@ -54,6 +54,7 @@ const Navbar = () => {
     const syncEmployeeDetails = async ()=>{
         const response = await getEmployeeDetails();
         if(response.status === 'unauthorized'){
+            signout();
             navigate('/login');
             sendErrorNotification('Session expired login again!')
         }
