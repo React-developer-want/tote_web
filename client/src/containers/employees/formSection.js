@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Button from '../../components/button';
 import Dropdown from '../../components/dropdown';
 import SimpleInput from '../../components/input';
@@ -16,6 +17,8 @@ const FormSection = (props) => {
     const [address, setAddress] = useState('');
     const [role, setRole] = useState('');
     const [loading, setLoading] = useState(false);
+    const employee = useSelector(state => state.employee.loggedInEmployee);
+    const isUpdateOperation = employee?.role?.toLowerCase() === 'admin';
 
     const setEmployeeData = (data) => {
         setEmail(data?.email ?? '');
@@ -74,8 +77,8 @@ const FormSection = (props) => {
         phone: (key, props) => <SimpleInput key={key} {...{...props, value: phone, onChange: (value) => setPhone(value)}}/>,
         email: (key, props) => <SimpleInput key={key} {...{...props, value: email, onChange: (value) => setEmail(value)}}/>,
         address: (key, props) => <SimpleInput key={key} {...{...props, value: address, onChange: (value) => setAddress(value)}}/>,
-        button: (key, props) => <Button key={key} {...{...props}}/>,
-        deleteButton: (key, props) => <Button key={key} {...{...props, delete: true, onClickBtn:()=> handleDelete()}}/>,
+        button: (key, props) => isUpdateOperation ? <Button key={key} {...{...props}}/> : null,
+        deleteButton: (key, props) => isUpdateOperation ? <Button key={key} {...{...props, delete: true, onClickBtn:()=> handleDelete()}}/> : null,
         cancelButton: (key, props) => <Button key={key} {...{...props, cancel:true, onClickBtn:()=> navigate(-1)}}/>,
         dropdown: (key, props) => <Dropdown key={key} {...{...props, value:role, onChange: (value) => setRole(value)}}/>
     };

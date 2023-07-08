@@ -1,6 +1,6 @@
-import { getProgressPercentage } from '../utils/date-handler';
 
-export const mapDashboardData = (allCounts = {}, projects = []) => {
+export const mapDashboardData = (allCounts = {}, employees = []) => {
+
   return {
     metaData: {
       title: "Dashboard | TOTE"
@@ -19,19 +19,37 @@ export const mapDashboardData = (allCounts = {}, projects = []) => {
       ],
     },
     mainSection:{
-      projectsTitle: 'All Projects',
-      projectsTable: {
-        rowLabels: ['_id', 'project', 'manager', 'status', 'progress'],
-        rows: projects?.map((item, index) => ({
-          cells: [
-            { value: index+1 },
-            { value: item?.name ?? '-' },
-            { value: item?.manager_name ?? '-' },
-            { value: item?.status ?? '-' },
-            { value: getProgressPercentage(item.start_date, item.due_date) + ' %' }
-          ],
-        })),
-      },
+      recentOrders : [
+        {
+          name: "Star Refrigerator", price: "$ 1200", payment: "Paid", status: "Delivered", statusStyle: "delivered",
+        },
+        {
+          name: "Dell Laptop", price: "$ 110", payment: "Due", status: "Pending", statusStyle: "pending",
+        },
+        {
+          name: "Apple Watch", price: "$ 1200", payment: "Paid", status: "Return", statusStyle: "return",
+        },
+        {
+          name: "Addidas Shoes", price: "$ 620", payment: "Due", status: "In Progress", statusStyle: "inProgress",
+        },
+        {
+          name: "Start Refrigerator", price: "$ 1200", payment: "Paid", status: "Delivered", statusStyle: "delivered",
+        },
+        {
+          name: "Dell Laptop", price: "$ 110", payment: "Due", status: "Pending", statusStyle: "pending",
+        },
+        {
+          name: "Apple Watch", price: "$ 1200", payment: "Paid", status: "Return", statusStyle: "return",
+        },
+        {
+          name: "Addidas Shoes", price: "$ 620", payment: "Due", status: "In Progress", statusStyle: "inProgress",
+        },
+      ],
+      recentCustomers: employees?.map((employee)=> ({
+        id: employee?._id,
+        name: employee?.name,
+        email: employee?.email
+      })) || [],
     }
   }
 }

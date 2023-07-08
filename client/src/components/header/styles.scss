@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .ham-icon{
+    display: inline-block;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+    svg{
+        fill: var(--black1);
+    }
+  }
+  .profile-section {
+    background: var(--blue);
+    padding: 20px;
+    border-radius: 0 0 0 20px;
+    width: max-content;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+    .employee-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      background: var(--yellow);
+      border-radius: 50%;
+      svg {
+          width: 20px;
+          fill: var(--gray);
+      }
+    }
+    
+    span{
+      font-size: 16px;
+      color: #fff;
+      text-transform: capitalize;
+    }
+  }
+}

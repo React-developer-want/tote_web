@@ -53,6 +53,22 @@
   scrollbar-color: #145996 #afaeae;
   scrollbar-width: 10px;
   scrollbar-width: thin;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+  --yellow: #e0e01c;
+  --gray: #653d3d;
+}
+
+#root {
+  position: relative;
 }
 
 body {
@@ -70,6 +86,25 @@ input:focus-visible {
 
 .text-primary {
   color: #A31ACB;
+}
+
+.main-container {
+  width: calc(100% - 300px);
+  position: absolute;
+  top: 0;
+  left: 300px;
+  transition: all 0.6s;
+}
+
+.main-container.hidden {
+  width: 100%;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.main-container.active {
+  width: calc(100% - 80px);
+  left: 80px;
 }
 
 @media only screen and (max-width: 600px) {

@@ -21,6 +21,9 @@ const Details = (props) => (
 const MainSection = (props) => {
   return (
     <div className='profile-main-section'>
+      <div className="user-icon">
+        <ion-icon name="person-outline"></ion-icon>
+      </div>
       <Details
         details={props.userDetails}
       />

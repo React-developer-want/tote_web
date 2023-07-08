@@ -4,41 +4,191 @@
   .dashboard-container {
     padding: 20px;
     .top-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      .card-component {
-        width: 15rem;
-        cursor: pointer;
-        .card-wrapper {
-          background-color: #145996;
-          color: #fff;
-          border-radius: 5px;
-          text-align: center;
-          padding: 1rem 2rem;
-          font-size: 20px;
-          .card-title {
-            text-transform: capitalize;
+      .cardBox {
+        position: relative;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        .card {
+          min-width: 16rem;
+          position: relative;
+          background: var(--white);
+          padding: 30px;
+          border-radius: 20px;
+          display: flex;
+          justify-content: space-between;
+          cursor: pointer;
+          box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+          .numbers {
+            position: relative;
+            font-weight: 500;
+            font-size: 2.5rem;
+            color: var(--blue);
           }
-          .card-content {
-            color: rgb(243, 243, 128);
+          .cardName {
+            color: var(--black2);
+            font-size: 1.1rem;
+            margin-top: 5px;
+          }
+          .iconBx {
+            font-size: 3.5rem;
+            color: var(--black2);
+          }
+          &:hover {
+            background: var(--blue);
+            .numbers, .cardName, .iconBx {
+              color: var(--white);
+            }
           }
         }
       }
     }
     .main-section {
-      margin-top: 4rem;
-      box-shadow: 0 2px 12px #9da1a5;
-      padding: 1rem 4px;
-      border-radius: 0.6rem;
-      .header {
-        margin: 1rem auto;
+      .details {
+        position: relative;
+        width: 100%;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 30px;
+      }
+      
+      .details .recentOrders {
+        position: relative;
+        display: grid;
+        max-height: 500px;
+        background: var(--white);
+        padding: 20px;
+        box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+      }
+      
+      .details .cardHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .cardHeader h2 {
+        font-weight: 600;
+        color: var(--blue);
+      }
+      .cardHeader .btn {
+        position: relative;
+        padding: 5px 10px;
+        background: var(--blue);
+        text-decoration: none;
+        color: var(--white);
+        border-radius: 6px;
+      }
+      
+      .details table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      .details table thead td {
+        font-weight: 600;
+      }
+      .details .recentOrders table tr {
+        color: var(--black1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .details .recentOrders table tr:last-child {
+        border-bottom: none;
+      }
+      .details .recentOrders table tbody tr:hover {
+        background: var(--blue);
+        color: var(--white);
+      }
+      .details .recentOrders table tr td {
+        padding: 10px;
+      }
+      .details .recentOrders table tr td:last-child {
+        text-align: end;
+      }
+      .details .recentOrders table tr td:nth-child(2) {
+        text-align: end;
+      }
+      .details .recentOrders table tr td:nth-child(3) {
         text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        border-bottom: 2px solid #787c80;
-        border-radius: 10px;
+      }
+      .status.delivered {
+        padding: 2px 4px;
+        background: #8de02c;
+        color: var(--white);
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .status.pending {
+        padding: 2px 4px;
+        background: #e9b10a;
+        color: var(--white);
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .status.return {
+        padding: 2px 4px;
+        background: #f00;
+        color: var(--white);
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .status.inProgress {
+        padding: 2px 4px;
+        background: #1795ce;
+        color: var(--white);
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      .recentCustomers {
+        position: relative;
+        display: grid;
+        min-height: 500px;
+        padding: 20px;
+        background: var(--white);
+        box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+      }
+      .recentCustomers .imgBx {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        background: var(--yellow);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+      .recentCustomers table tr td {
+        padding: 12px 10px;
+      }
+      .recentCustomers table tr td h4 {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.2rem;
+      }
+      .recentCustomers table tr td h4 span {
+        font-size: 14px;
+        color: var(--black2);
+      }
+      .recentCustomers table tr {
+        cursor: pointer;
+      }
+      .recentCustomers table tr:hover {
+        background: var(--blue);
+        color: var(--white);
+      }
+      .recentCustomers table tr:hover td h4 span {
+        color: var(--white);
       }
     }
   }

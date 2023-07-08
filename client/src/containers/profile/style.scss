@@ -1,28 +1,50 @@
 .profile-page{
     .profile-container{
         padding: 3rem 1rem;
-        .profile-main-section .profile-details{
+        .profile-main-section {
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
-            gap: 20px;
-            .custom-input{
+            .user-icon {
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
-                text-transform: capitalize;
-                .field{
-                    font-size: larger;
-                    font-weight: bolder;
-                    width: 20%;
-                    border-right: 4px solid rgb(96, 95, 95);
-                    border-style: none dotted none none;
-                }
-                .value{
-                    width: 50%;
-                    border-bottom: 1px solid rgb(96, 95, 95);
-                    border-style: none none dotted none;
+                padding: 50px;
+                background: var(--yellow);
+                border-radius: 50%;
+                margin-bottom: 20px;
+                ion-icon {
+                    width: 100px;
+                    height: 100px;
                 }
             }
+            .profile-details{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                min-width: 40rem;
+                padding: 20px;
+                border: 2px solid var(--blue);
+                border-radius: 20px;
+                box-shadow: 0 5px 5px var(--blue);
+               .custom-input{
+                   display: flex;
+                   justify-content: space-between;
+                   align-items: center;
+                   text-transform: capitalize;
+                   .field{
+                       font-size: larger;
+                       font-weight: bolder;
+                       width: 50%;
+                   }
+                   .value{
+                       width: 50%;
+                       border-bottom: 1px solid rgb(96, 95, 95);
+                       border-style: none none dotted none;
+                   }
+               }
+           }
         }
     }
 }
