@@ -1,45 +1,55 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React,{ useState,useRef } from 'react';
-import { DoubleArrow, HamburgerIcon, UserIcon } from '../icons';
 import './style.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { signout } from '../../services/login/signout';
-import { isHeaderHidden } from '../../utils/isHeaderHidden';
 import { getEmployeeDetails } from '../../services/employees/employee-details';
 import { mapNavbarData } from '../../data/navbarData';
-import { checkLoginStatus } from '../../utils/checkLogin';
 import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
+import { useDispatch, useSelector } from 'react-redux';
+import { navbarActions } from '../../redux/reducers/other';
+import { isHeaderHidden } from '../../utils/isHeaderHidden';
+import { employeeActions } from '../../redux/reducers/employee';
+
+const navicons = {
+    home_icon: () => <ion-icon name="home-outline"></ion-icon>,
+    employees_icon: () => <ion-icon name="people-outline"></ion-icon>,
+    departments_icon: () => <ion-icon name="cellular-outline"></ion-icon>,
+    projects_icon: () => <ion-icon name="albums-outline"></ion-icon>,
+    tasks_icon: () => <ion-icon name="checkbox-outline"></ion-icon>,
+    profile_icon: () => <ion-icon name="person-outline"></ion-icon>,
+    logout_icon: () => <ion-icon name="log-out-outline"></ion-icon>
+};
 
 const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const headerHidden = isHeaderHidden(location.pathname);
-    const [header, setHeader] = useState('');
+    const pathName = location.pathname;
     const [headerData, setHeaderData] = useState(mapNavbarData({}));
     const navRef = useRef(null);
-    const [isNavActive, setIsNavActive] = useState(false);
-    const handleNav = ()=>{
-        setIsNavActive(prev => !prev)
-    }
+    const { isActive: isNavActive, isHidden } = useSelector(state => state.navbar);
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
         signout();
-        setIsNavActive(prev => !prev);
         navigate('/login');
         sendSuccessNotification("Logout successfully");
     }
 
-    useEffect(() => {
-        checkLoginStatus(location, navigate);
-        if(location.pathname === '/'){
-            setHeader('Dashboard');
-        }else{
-            let slashIndex = location.pathname.indexOf('/',1) === -1 ? location.pathname.length : location.pathname.indexOf('/',1);
-            
-            setHeader(location.pathname.substring(1, slashIndex));
-        }
-      }, [location]);
+    const handleItemClick = (item) => {
+        item.className = 'hovered';
+        const list = headerData.navbarItems.map(navItem => {
+            if(item.id === navItem.id) {
+                return item;
+            }
+            navItem.className = '';
+            return navItem;
+        });
+        setHeaderData((prev)=> ({
+            ...prev,
+            navbarItems: list
+        }));
+    }
 
     const syncEmployeeDetails = async ()=>{
         const response = await getEmployeeDetails();
@@ -47,18 +57,23 @@ const Navbar = () => {
             navigate('/login');
             sendErrorNotification('Session expired login again!')
         }
+        dispatch(employeeActions.setLoggedInEmployee(response?.body?.employee));
         setHeaderData(mapNavbarData(response?.body?.employee));
     }
 
     useEffect(()=>{
-        if(!headerHidden){
+        if(!isHidden){
             syncEmployeeDetails();
         }
-    },[headerHidden])
+    },[isHidden])
+
+    useEffect(()=>{
+        dispatch(navbarActions.setHeaderHidden(isHeaderHidden(pathName)));
+    },[pathName])
 
     const closeOpenMenus = (e)=>{
         if(navRef.current && isNavActive && !navRef.current.contains(e.target)){
-            setIsNavActive(false);
+            dispatch(navbarActions.setIsActive(!isNavActive));
         }
     }
 
@@ -66,30 +81,40 @@ const Navbar = () => {
         document.addEventListener('mousedown', closeOpenMenus);
     })
 
-  return (
-    headerHidden ? null : <div className='navbar' ref={navRef}>
-        <div className="ham-icon" onClick={handleNav}> <HamburgerIcon/> </div>
-        <h1 className="header"> {header} </h1>
-        <div className={`container ${isNavActive ? 'active' : ''}`}>
+  return !isHidden ? (
+        <div className={`navigation ${!isNavActive ? 'active': ''}`} ref={navRef}>
+            <ul>
+                <li>
+                    <Link to={'/'}>
+                        <span className="icon">
+                            <img src="/logo.png" alt="logo_tote" />
+                        </span>
+                        <span className="title brand">Tote<span>Web</span></span>
+                    </Link>
+                </li>
 
-            <div className="closer"> <DoubleArrow onClick={handleNav}/> </div>
+                {headerData.navbarItems.map((item)=> (
+                    <li key={item.id} className={item.paths.includes(pathName) ? 'hovered' : ''} onClick={() => handleItemClick(item)}>
+                        <Link to={item.to}>
+                            <span className="icon">
+                                {navicons[item.icon]()}
+                            </span>
+                            <span className="title">{item.title}</span>
+                        </Link>
+                    </li>
+                ))}
 
-            {headerData.navbarItems.map((item, index)=>{
-                return <Link key={index+item.id} to={item.to} onClick={handleNav} className={`${location.pathname === item.to ? 'active' : ''}`} > {item.title} </Link>
-            })}
-
-            <div className="logout" onClick={handleLogout}> Logout </div>
-
-
+                <li onClick={handleLogout}>
+                    <Link to={'/'}>
+                        <span className="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span className="title">Sign Out</span>
+                    </Link>
+                </li>
+            </ul>
         </div>
-        <div className="profile-section">
-            <div className="employee-icon">
-                <UserIcon/>
-            </div>
-            <span> Hi {headerData?.employeeName?.split(' ')[0]} </span>
-        </div>
-    </div>
-  )
+  ) : null
 }
 
 export default Navbar

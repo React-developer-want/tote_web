@@ -10,6 +10,13 @@ import { setLocalStorageKey } from '../../utils/localStorage';
 
 import './form-section.scss';
 
+const handleLocalStorge = (tokenDetails, id, email) => {
+  setLocalStorageKey('token', tokenDetails.token);
+  setLocalStorageKey('expiry', tokenDetails.expiry);
+  setLocalStorageKey('id', id);
+  setLocalStorageKey('email', email);
+}
+
 const FormSection = (props) => {
   const navigate = useNavigate();
   const [[email, isEmailValid], setEmail] = useState(['', false]);
@@ -25,9 +32,7 @@ const FormSection = (props) => {
     try{
       const response = await signin(email, password);
       if(response.status === 'success'){
-        setLocalStorageKey('token', response.token);
-        setLocalStorageKey('id', response.body.employee._id);
-        setLocalStorageKey('email', email);
+        handleLocalStorge(response.tokenDetails, response.body.employee._id, email);
         sendSuccessNotification('Welcome '+ response.body.employee.name);
         navigate('/');
       }else{

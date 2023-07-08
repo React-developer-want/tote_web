@@ -5,10 +5,8 @@ import { mapDashboardData } from '../../data/dashboardData.js';
 import MainSection from './main-section.js';
 import TopSection from './top-section.js';
 import './styles.scss';
-import { getListProjects } from '../../services/projects/projects';
 import Loader from '../../components/loader';
-import { getEmployeesCount } from '../../services/employees/allEmployees';
-import { getDepartmentsCount } from '../../services/departments/departments';
+import { getAllEmployees } from '../../services/employees/allEmployees';
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(mapDashboardData());
@@ -17,9 +15,8 @@ const Dashboard = () => {
 
   const syncDashboard = async () => {
     setLoading(true);
-    const [projects, employees, departments] = await Promise.all([getListProjects(), getEmployeesCount(), getDepartmentsCount()]);
-    const allCounts = { projects: projects?.response?.length, employees: employees?.response, departments: departments?.response };
-    setDashboardData(mapDashboardData(allCounts, projects?.response));
+    const response = await getAllEmployees();
+    setDashboardData(mapDashboardData({}, response.body.data));
     setLoading(false);
   };
   
