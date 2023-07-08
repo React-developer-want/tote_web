@@ -20,7 +20,8 @@ const employeeSchema = new mongoose.Schema({
         type: String
     },
     role:{
-        type: String
+        type: String,
+        default: 'agent'
     }
 });
 

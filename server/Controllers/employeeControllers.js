@@ -20,12 +20,26 @@ exports.login = async (req, res) => {
             }, process.env.ACCESS_TOKEN, { expiresIn: '1h' }
         );
 
+        const tokenDetails = {
+            token,
+        };
+
+        try {
+            const decode = jwt.verify(token, process.env.ACCESS_TOKEN, {
+                "alg": "HS256",
+                "typ": "JWT"
+            });
+            tokenDetails.expiry = decode.exp;
+        } catch (err) {
+            console.log(err);
+        }
+
         result = result.toObject();
         delete result.password;
 
         res.status(200).json({
             status : "success",
-            token,
+            tokenDetails, 
             body : {
                 employee : result
             }
