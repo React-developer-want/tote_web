@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { transporter, generateOtp } = require('../utils/sendOtp');
 const ApiFeatures = require('../utils/apiFeatures');
+const { sendOTPTemplate } = require('../html-template/send-otp-template');
 const saltRounds = 10;
 
 exports.login = async (req, res) => {
@@ -198,7 +199,7 @@ exports.resetPasswordSendOTP = async (req, res) => {
             to: email,
             subject: 'Verification | TOTE',
             text: 'This is your reset password otp for tote application',
-            html: '<b>'+ sixDigitOtp +'</b>'
+            html: sendOTPTemplate(sixDigitOtp)
         }
         await transporter.sendMail(mailOptions);
 
