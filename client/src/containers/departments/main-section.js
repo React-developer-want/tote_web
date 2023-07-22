@@ -60,6 +60,7 @@ const MainSection = (props) => {
         <CreateDepartForm 
           inputComponents={props.createDepartForm}
           closeModal = {setDepartModal}
+          fetchData={props.fetchData}
         />
       </Modal>}
 

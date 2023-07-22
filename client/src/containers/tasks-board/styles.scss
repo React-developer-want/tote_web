@@ -1,0 +1,273 @@
+.tasks-board-page {
+  margin-top: 10px;
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    .details {
+      border-radius: 10px 0 0 10px;
+      padding: 10px 20px;
+      background-color: var(--blue);
+      color: var(--white);
+      display: flex;
+      font-size: 20px;
+      align-items: center;
+
+      .arrow {
+        cursor: pointer;
+        width: 3%;
+        text-align: center;
+        margin-right: 30px;
+      }
+  
+      .title {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+    .new-task-btn {
+      margin-right: 20px;
+      background-color: var(--yellow);
+      color: var(--gray);
+      padding: 12px;
+      border-radius: 9999px;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .task-modal, .modal {
+    background-color: #00000080;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 1rem 0.5rem;
+    overflow: scroll;
+    z-index: 50;
+    .content {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      font-weight: 700;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      background-color: var(--white);
+      max-width: 28rem;
+      width: 100%;
+      margin: auto;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        align-items: center;
+        .title {
+          font-size: 1.125rem;
+          line-height: 1.75rem;
+        }
+        .dots {
+          cursor: pointer;
+          height: 1.5rem;
+          max-width: 100%;
+        }
+      }
+      .description {
+        letter-spacing: 0.025em;
+        font-weight: 600;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        padding-top: 1.5rem;
+      }
+      .subtask-details {
+        letter-spacing: 0.1rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        padding-top: 1.5rem;
+      }
+      .subtask-container {
+        margin-top: 0.75rem;
+        .subtask {
+          padding: 0.75rem;
+          background-color: #f4f7fd;
+          border-radius: 0.375rem;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 1rem;
+          width: 100%;
+          position: relative;
+          &:hover {
+            background-color: #635fc740;
+          }
+          input {
+            accent-color: #635fc7;
+            height: 1rem;
+            width: 1rem;
+            cursor: pointer;
+          }
+        }
+      }
+      .status {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+      }
+    }
+  }
+  .add-task-modal .content {
+    .title {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+    .task-name, .task-desc, .subtasks-container, .status {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      label {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: gray;
+      }
+      input, .subtask input {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        border-radius: 0.375rem;
+      }
+    }
+    .task-desc {
+      textarea {
+        min-height: 200px;
+        resize: vertical;
+        outline: none;
+        padding: 0.5rem;
+        border-width: 2px;
+      }
+    }
+    .subtasks-container .subtask {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+      input {
+        flex-grow: 1;
+      }
+      span {
+        cursor: pointer;
+        font-size: 24px;
+        margin-left: 2rem;
+      }
+    }
+    .add-new-task-btn, .status .save-btn {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      border: none;
+      background-color: #635fc7;
+      color: #f4f7fd;
+      border-radius: 9999px;
+      width: 100%;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 16px;
+    }
+  }
+  .tasks-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: scroll;
+    display: flex;
+    height: 100vh;
+    gap: 1.5rem;
+    .empty-board {
+      background-color: #efe2e2;
+      margin: 40px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 10px;
+      text-align: center;
+      gap: 80px;
+      padding: 40px 80px;
+      .title{
+        color: #917d7d;
+        text-transform: capitalize;
+        padding: 10px;
+        font-size: 1.5rem;
+      }
+      button {
+        background-color: var(--yellow);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+    .tasks-column {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding-top: 20px;
+      min-width: 280px;
+      margin: 0 1.25rem;
+      .column-title {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .task{
+        cursor: pointer;
+        padding: 1.5rem 0.75rem;
+        border-radius: 0.5rem;
+        width: 280px;
+        box-shadow: 1px 1px 4px;
+        .title {
+          color: var(--black1);
+          font-weight: 600;
+        }
+        .details {
+          color: gray;
+        }
+        &:hover {
+          .title{
+            color: blueviolet;
+          }
+        }
+        &:first-child{
+          margin: 1.25rem 0;
+        }
+      }
+    }
+    .new-column-btn {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      min-width: 280px;
+      background-color: #e4d8d8;
+      border-radius: 20px;
+      margin-top: 56px;
+      font-size: 25px;
+      margin-right: 40px;
+      cursor: pointer;
+      transition: all 300ms;
+      &:hover{
+        background-color: #c2b5b5;
+        color: #5e4848;
+      }
+    }
+  }
+}

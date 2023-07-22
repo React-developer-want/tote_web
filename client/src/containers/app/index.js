@@ -15,7 +15,7 @@ const App = () => {
     <BrowserRouter>
       <Navbar/>
       <ToastContainer/>
-      <div className={`main-container ${!isActive ? 'active': ''} ${isHidden ? 'hidden' : ''}`}>
+      <div className={`main-container ${isHidden ? 'hidden' : ''} ${!isActive && !isHidden ? 'active': ''}`}>
         <Header/>
         <Routes>
           {routes.map(route => {

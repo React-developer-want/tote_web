@@ -37,6 +37,7 @@ const Departments = () => {
         />
         <MainSection
           {...departmentData.mainSection}
+          fetchData={fetchData}
         />
       </div>
     </div>

@@ -65,6 +65,8 @@
   --black2: #999;
   --yellow: #e0e01c;
   --gray: #653d3d;
+  --red: #890909;
+  --shadow-color: #364e7e1a;
 }
 
 #root {
@@ -84,15 +86,21 @@ input:focus-visible {
   outline: none;
 }
 
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
 .text-primary {
   color: #A31ACB;
 }
 
 .main-container {
-  width: calc(100% - 300px);
+  width: calc(100% - 200px);
   position: absolute;
   top: 0;
-  left: 300px;
+  left: 200px;
   transition: all 0.6s;
 }
 

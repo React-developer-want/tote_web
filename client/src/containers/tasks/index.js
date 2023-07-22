@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import Loader from '../../components/loader';
-import MetaTags from '../../components/meta-tags';
-import { mapTasksData } from '../../data/tasksData'; 
-import { getAllTasks } from '../../services/tasks/tasks';
-import MainSection from './main-section';
-import './style.scss';
+import WelcomePage from "./welcome-page";
+import './styles.scss';
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { getAllBoards } from "../../services/tasks/taskBoards";
+import { boardActions } from "../../redux/reducers/board";
+import Loader from "../../components/loader";
 
-const Tasks = () => {
-  const [{ metaData, mainSection, backgroundImage }, setTasks] = useState(mapTasksData());
-  const [isLoading, setIsLoading] = useState(false);
+const Task = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
-  const fetchTasks = async () => {
-    setIsLoading(true);
-    const result = await getAllTasks();
+  const fetchBoards = async () => {
+    const result = await getAllBoards();
     if(result.status === 'success'){
-      setTasks(mapTasksData(result.response));
+      const boards = result.response;
+      dispatch(boardActions.setBoardsData(boards));
     }
     setIsLoading(false);
   }
 
   useEffect(()=>{
-    fetchTasks();
+    fetchBoards();
   },[]);
 
   return ( isLoading ? <Loader/> :
-    <div className='tasks-page' style={{backgroundImage: `url(${backgroundImage.path})`}}>
-      <div className="tasks-container">
-        <MetaTags {...metaData} />
-        <MainSection {...mainSection} fetchTasks={fetchTasks}/>
-      </div>
+    <div className="task-page">
+      <WelcomePage fetchBoards={fetchBoards}/>
     </div>
   )
 }
 
-export default Tasks
+export default Task;

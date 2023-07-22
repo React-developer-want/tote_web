@@ -3,9 +3,9 @@ const router = express.Router();
 const verifyToken = require('../Middilewares/jwt_auth');
 const taskControllers = require('../Controllers/taskController');
 
-router.route('/create-task').post(verifyToken, taskControllers.createTask);
-router.route('/update-task/:id').post(verifyToken, taskControllers.updateTasks);
-router.route('/all-tasks').get(verifyToken, taskControllers.getAllTasks);
-router.route('/delete-task').delete(verifyToken, taskControllers.deleteTask);
+router.route('/create-task/:boardId/columns/:columnId/tasks').post(verifyToken, taskControllers.createTask);
+router.route('/update-task/:boardId/columns/:columnId/tasks/:taskId').post(verifyToken, taskControllers.updateTask);
+router.route('/update-task/:boardId/tasks/:taskId').post(verifyToken, taskControllers.dragTask);
+router.route('/delete-task/:boardId/tasks/:taskId').delete(verifyToken, taskControllers.deleteTask);
 
 module.exports = router;
