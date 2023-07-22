@@ -21,8 +21,9 @@ const CreateDepartForm = (props) => {
         if(response.status === 'success'){
             sendSuccessNotification("Successfully created a new department");
             props.closeModal();
+            props.fetchData();
         }else{
-           sendErrorNotification(response.message); 
+           sendErrorNotification(response.message);
         }
     }
 

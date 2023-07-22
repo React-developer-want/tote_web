@@ -7,6 +7,7 @@ const departRoutes = require('./Routers/departmentRoutes');
 const taskRoutes = require('./Routers/taskRoutes');
 const reportRoutes = require('./Routers/reportRoutes');
 const projectRoutes = require('./Routers/projectRoutes');
+const taskBoardsRoutes = require('./Routers/taskBoardRoutes');
 const app = express();
 
 // middilewares 
@@ -20,6 +21,7 @@ app.use('/api/v1/departments', departRoutes);
 app.use('/api/v1/tasks', taskRoutes);
 app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/projects', projectRoutes);
+app.use('/api/v1/task-board', taskBoardsRoutes);
 
 
 module.exports = app;

@@ -1,18 +1,19 @@
 import React from 'react';
 import './styles.scss';
 
-const Dropdown = (props) => {
+const Dropdown = ({ label, value, items, onChange, defaultValue }) => {
 
     const handleChange = (e) =>{
         const {value} = e.target;
-        props.onChange(value);
+        onChange(value, e.target.selectedIndex);
     }
   return (
     <div className='dropdown-component'>
-        <div className="label">{props.label}</div>
+        <div className="label">{label}</div>
         <div className="dropdown-wrapper">
-            <select value={props.value ?? props.items[0]} onChange={handleChange}>
-                {props.items.map((item, index)=>(
+            <select value={value} onChange={handleChange}>
+                {!value ? <option value={''} selected={true}>{defaultValue || 'Select an option -'}</option> : null}
+                {items.map((item, index)=>(
                     <option key={item+index} value={item}> {item} </option>
                 ))}
             </select>

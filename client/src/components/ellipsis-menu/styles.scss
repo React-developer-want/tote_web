@@ -1,0 +1,32 @@
+.task-elipsis-menu {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  box-shadow: 1px 0px 3px;
+  z-index: 50;
+  .elipsis-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .details{
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+      padding-right: 3rem;
+      padding-left: 1rem;
+      background-color: var(--white);
+      width: 10rem;
+      height: auto;
+      z-index: 50;
+      .edit-type{
+        cursor: pointer;
+      }
+      .delete-type {
+        cursor: pointer;
+        color: var(--red);
+      }
+    }
+  }
+}

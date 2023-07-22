@@ -1,0 +1,99 @@
+.task-page {
+  .tasks-welcome-page{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 0px;
+    .boards-container {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      min-height: 66vh;
+      overflow: auto;
+      padding: 40px;
+      scroll-behavior: smooth;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      .board-detail-container {
+        box-shadow: 1.5px 1px 4px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        .board-card {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 20px 0 20px 20px;
+          width: 16rem;
+          .name {
+            color: var(--blue);
+            font-size: 20px;
+            font-weight: bold;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+        .actions {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 8px;
+          .dots::after {
+            cursor: pointer;
+            content: "⠇";
+            font-size: 26px;
+            color: blue;
+          }
+          .tooltip {
+            width: max-content;
+            position: absolute;
+            top: 100%;
+            right: 7%;
+            padding: 4px 15px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            box-shadow: 1.5px 1.5px 4px;
+            background: white;
+            z-index: 1;
+            border-radius: 5px;
+            gap: 4px;
+            font-size: 16px;
+            .edit, .delete {
+              cursor: pointer;
+            }
+            .delete {
+              color: var(--red);
+            }
+          }
+        }
+      }
+    }
+    .create-btn {
+      cursor: pointer;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: var(--blue);
+      color: var(--white);
+      font-size: 20px;
+      border-radius: 10px;
+    }
+    .empty-board {
+      cursor: pointer;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 46px;
+      background-color: #d5bfbf;
+      margin: 0.5rem;
+      border-radius: 0.75rem;
+    }
+  }
+}

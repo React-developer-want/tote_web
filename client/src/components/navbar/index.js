@@ -95,7 +95,7 @@ const Navbar = () => {
                 </li>
 
                 {headerData.navbarItems.map((item)=> (
-                    <li key={item.id} className={item.paths.includes(pathName) ? 'hovered' : ''} onClick={() => handleItemClick(item)}>
+                    <li key={item.id} className={item.paths.includes(pathName.split('/')[1]) ? 'hovered' : ''} onClick={() => handleItemClick(item)}>
                         <Link to={item.to}>
                             <span className="icon">
                                 {navicons[item.icon]()}

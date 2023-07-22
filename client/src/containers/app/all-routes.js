@@ -15,6 +15,7 @@ import {
 import EmployeeDetails from '../employees/employeeDetails';
 import employeeDetailsData from '../../data/employeeDetailsData.json';
 import Profile from '../profile';
+import TasksBoard from '../tasks-board';
 
 export const allRoutes = [
   {
@@ -36,6 +37,10 @@ export const allRoutes = [
   {
     path: '/tasks',
     element: <Ledger/>
+  },
+  {
+    path: '/tasks/board/:id',
+    element: <TasksBoard/>
   },
   {
     path: '/departments',
