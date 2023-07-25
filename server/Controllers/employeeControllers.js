@@ -5,6 +5,7 @@ require('dotenv').config();
 const { transporter, generateOtp } = require('../utils/sendOtp');
 const ApiFeatures = require('../utils/apiFeatures');
 const { sendOTPTemplate } = require('../html-template/send-otp-template');
+const { sendMail } = require('../send-in-blue');
 const saltRounds = 10;
 
 exports.login = async (req, res) => {
@@ -189,19 +190,13 @@ exports.resetPasswordSendOTP = async (req, res) => {
     
     try{
         let employee = await Employee.findOne({email});
-        
+        if(!employee) throw new Error('Couldn\'t find employee');
         const sixDigitOtp = generateOtp();
         
         employee.otp = sixDigitOtp;
         await employee.save();
-        const mailOptions = {
-            from: process.env.EMAIL,
-            to: email,
-            subject: 'Verification | TOTE',
-            text: 'This is your reset password otp for tote application',
-            html: sendOTPTemplate(sixDigitOtp)
-        }
-        await transporter.sendMail(mailOptions);
+
+        await sendMail([{ email, name: employee.name }], 'Verification | TOTE', sendOTPTemplate(sixDigitOtp));
 
         res.status(202).json({
             status: 'success',
