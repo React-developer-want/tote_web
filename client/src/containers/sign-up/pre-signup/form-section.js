@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from '../../components/button';
-import Email from '../../components/email';
-import Name from '../../components/name';
-import Password from '../../components/password';
-import { signup } from '../../services/login/signup';
-import { sendErrorNotification, sendSuccessNotification } from '../../services/notifications';
-import { checkAllTrue } from '../../utils/check-all';
-
-import './form-section.scss';
+import { preSignup } from '../../../services/login/signup';
+import { checkAllTrue } from '../../../utils/check-all';
+import { sendErrorNotification, sendSuccessNotification } from '../../../services/notifications';
+import Email from '../../../components/email';
+import Password from '../../../components/password';
+import Name from '../../../components/name';
+import Button from '../../../components/button';
 
 const FormSection = (props) => {
   const navigate = useNavigate();
@@ -22,12 +20,13 @@ const FormSection = (props) => {
       sendErrorNotification('Form Incomplete - Please fill details below.');
       return;
     }
-    const response = await signup(name, email, password);
-    if(response.status === 'success'){
-      sendSuccessNotification("Account successfully created");
-      navigate('/login');
+    const result = await preSignup(name, email, password);
+    if(result.status === 'success') {
+      sendSuccessNotification(result.message);
+      const { id } = result.response;
+      navigate(`/otp-verification/${id}`);
     }else{
-      sendErrorNotification(response.message);
+      sendErrorNotification(result.message);
     }
     
   };

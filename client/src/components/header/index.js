@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { navbarActions } from '../../redux/reducers/other';
 import { HamburgerIcon, UserIcon } from '../icons';
 import './styles.scss';
-import { checkLoginStatus } from '../../utils/checkLogin';
 
 const Header = () => {
   const { isActive, isHidden } = useSelector(state => state.navbar);
   const employee = useSelector(state => state.employee.loggedInEmployee);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleNav = () => {
     dispatch(navbarActions.setIsActive(!isActive));
@@ -20,14 +18,6 @@ const Header = () => {
   const handleClick = () => {
     navigate('/profile');
   };
-
-  useEffect(()=> {
-    checkLoginStatus(location, navigate);
-    const interval = setInterval(()=> {
-      checkLoginStatus(location, navigate);
-    }, 10000);
-    return () => clearInterval(interval);
-  },[location]);
 
   return ( !isHidden ?
     <div className='header'>

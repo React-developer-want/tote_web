@@ -1,0 +1,44 @@
+{
+  "metaData": {
+    "title": "SignUp | TOTE"
+  },
+  "topSection": {
+    "title": "Sign Up"
+  },
+  "formSection": {
+    "inputComponents": [
+      {
+        "component": "name",
+        "details": {
+          "label": "Full Name",
+          "placeholder": "E.g. John Doe"
+        }
+      },
+      {
+        "component": "email",
+        "details": {
+          "label": "Email Address",
+          "placeholder": "E.g. xyz@gmail.com"
+        }
+      },
+      {
+        "component": "password",
+        "details": {
+          "label": "Password",
+          "placeholder": "********"
+        }
+      },
+      {
+        "component": "button",
+        "details": {
+          "text": "Send OTP",
+          "type": "submit",
+          "button": "primary"
+        }
+      }
+    ],
+    "bottomText": "Already a member?",
+    "linkText": "Login",
+    "signUpLink": "/login"
+  }
+}

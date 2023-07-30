@@ -1,0 +1,30 @@
+{
+  "metaData": {
+    "title": "OTP | TOTE"
+  },
+  "topSection": {
+    "title": "OTP Verification"
+  },
+  "formSection": {
+    "inputComponents": [
+      {
+        "component": "otp",
+        "details": {
+          "label": "Please Enter The 6 Digit OTP",
+          "placeholder": "Enter The 6 Digit OTP"
+        }
+      },
+      {
+        "component": "button",
+        "details": {
+          "text": "Verify OTP",
+          "type": "submit",
+          "button": "primary"
+        }
+      }
+    ],
+    "bottomText": "Already a member?",
+    "linkText": "Login",
+    "signUpLink": "/login"
+  }
+}

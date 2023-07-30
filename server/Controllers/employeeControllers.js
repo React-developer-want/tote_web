@@ -54,25 +54,74 @@ exports.login = async (req, res) => {
     }
 }
 
-exports.signup = async (req, res) => {
+exports.preSignup = async (req, res) => {
     const employeeObj = req.body;
-    try{
+    try {
+        const employee = await Employee.findOne({ email: employeeObj.email });
+        if(employee) throw new Error('Employee already exists.');
         const hash = bcrypt.hashSync(employeeObj.password, saltRounds);
         employeeObj.password = hash;
-        let newEmployee = await Employee.create(employeeObj);
 
-        newEmployee = newEmployee.toObject();
-        delete newEmployee.password;
+        const sixDigitOtp = generateOtp();
+        employeeObj.verification_otp = sixDigitOtp;
 
-        res.status(201).json({
-            status : "success",
-            body : {
-                newEmployee
+        await sendMail([{ email: employeeObj.email, name: employeeObj.name }], 'Verification | TOTE', sendOTPTemplate(sixDigitOtp, 'OTP for create new account'));
+
+        const updatedEmployee = await Employee.create(employeeObj);
+
+        res.status(200).json({
+            status: 'success',
+            message: `successfully sent otp to provided mail ${employeeObj.email}`,
+            response: {
+                id: updatedEmployee._id
             }
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed',
+            message: error.message
         })
+    }
+};
 
+exports.preSignupResendOTP = async (req, res) => {
+    const { id  } = req.params;
+    try {
+        const employee = await Employee.findById(id);
+        const sixDigitOtp = generateOtp();
+        employee.verification_otp = sixDigitOtp;
+
+        await sendMail([{ email: employee.email, name: employee.name }], 'Verification | TOTE', sendOTPTemplate(sixDigitOtp, 'OTP for create new account'));
+        await employee.save();
+
+        res.status(200).json({
+            status: 'success',
+            message: `successfully sent otp to provided mail ${employee.email}`
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'failed',
+            message: error.message
+        })
+    }
+};
+
+exports.signup = async (req, res) => {
+    const { id, otp  } = req.body;
+    try{
+        const employee = await Employee.findById(id);
+        if(employee.verification_otp !== otp) throw new Error('OTP is not valid');
+        employee.verification_otp = '';
+        employee.isVerified = true;
+
+        await employee.save();
+
+        res.status(200).json({
+            status : "success",
+            message: "You have successfully created an account"
+        })
     }catch(error){
-        res.status(403).json({
+        res.status(500).json({
             status : "failed",
             message : error.message
         })
@@ -148,10 +197,8 @@ exports.deleteEmployee = async (req, res)=>{
 
 exports.getAllEmployees = async (req, res)=>{
     try{
-        // const data = await Employee.find().select('-password -otp -__v');
         const features = new ApiFeatures(Employee.find(), req.query)
-            .limitFields()
-            .pagination();
+            .limitFields();
         const data = await features.query;
 
         res.status(202).json({
@@ -196,7 +243,7 @@ exports.resetPasswordSendOTP = async (req, res) => {
         employee.otp = sixDigitOtp;
         await employee.save();
 
-        await sendMail([{ email, name: employee.name }], 'Verification | TOTE', sendOTPTemplate(sixDigitOtp));
+        await sendMail([{ email, name: employee.name }], 'Verification | TOTE', sendOTPTemplate(sixDigitOtp, 'OTP for forgot password'));
 
         res.status(202).json({
             status: 'success',

@@ -4,8 +4,8 @@ const sendMail = async (to, subject, htmlContent) => {
   console.log({ to, subject, htmlContent });
   const data = {
     sender: {
-      name: 'Sumit Baghel',
-      email: 'sarvgt435216@gmail.com'
+      name: 'no reply',
+      email: process.env.EMAIL
     },
     to,
     subject,

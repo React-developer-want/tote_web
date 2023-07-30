@@ -1,7 +1,7 @@
 export const isHeaderHidden = (location) =>{
-    if(location === '/login' || location === '/login/' || location === '/signup' || location === '/signup/'
-        || location === '/reset-password' || location === '/reset-password/'
-    ){
+    const authRoutes = ['login', 'signup', 'reset-password', 'otp-verification'];
+    const isValid = authRoutes.find((route)=> (location.split('/')[1] === route));
+    if(isValid){
         return true;
     }
     return false;

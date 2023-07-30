@@ -1,8 +1,7 @@
 import Login from '../sign-in';
-import Signup from '../sign-up';
 import Dashboard from '../dashboard';
+import Signup from '../sign-up/pre-signup';
 import loginData from '../../data/signin.json';
-import signupData from '../../data/signup.json';
 import resetPasswordData from '../../data/resetPasswordData.json';
 import Ledger from '../tasks';
 import Departments from '../departments';
@@ -16,6 +15,7 @@ import EmployeeDetails from '../employees/employeeDetails';
 import employeeDetailsData from '../../data/employeeDetailsData.json';
 import Profile from '../profile';
 import TasksBoard from '../tasks-board';
+import OTP_VERIFICATION from '../sign-up/OTP-verification';
 
 export const allRoutes = [
   {
@@ -24,7 +24,11 @@ export const allRoutes = [
   },
   {
     path: '/signup',
-    element: <Signup {...signupData} />
+    element: <Signup />
+  },
+  {
+    path: '/otp-verification/:id',
+    element: <OTP_VERIFICATION />
   },
   {
     path: '/reset-password',

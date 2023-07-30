@@ -22,6 +22,13 @@ const employeeSchema = new mongoose.Schema({
     role:{
         type: String,
         default: 'agent'
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    verification_otp: {
+        type: String,
     }
 });
 

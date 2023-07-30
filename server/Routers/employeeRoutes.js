@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.route('/login').post(checkLoginData, employeeControllers.login);
 
+router.route('/signup/send-otp').post(employeeControllers.preSignup);
+
+router.route('/signup/resend-otp/:id').get(employeeControllers.preSignupResendOTP);
+
 router.route('/signup').post(employeeControllers.signup);
 
 router.route('/forgotPassword').post(checkOtpData, employeeControllers.resetPasswordSendOTP);
