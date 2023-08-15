@@ -112,7 +112,6 @@ const AddEditTaskModal = ({
   const onSubmit = async (type) => {
     const newTask = { title, description, subtasks, status };
     if (type === "add") {
-      console.log({newColIndex});
       await addTask(newTask, newColIndex, board._id);
     } else {
       await editTask(board._id, task._id, newColIndex, newTask);
