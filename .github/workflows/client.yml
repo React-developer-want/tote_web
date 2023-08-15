@@ -1,0 +1,35 @@
+name: Client Pipeline
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'client/**' # Trigger only when code is pushed inside the 'client' folder
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      REACT_APP_BASE_URI : ${{ vars.REACT_APP_BASE_URI }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: cd client && npm install
+
+      - name: Build client
+        run: cd client && npm run Build
+
+      - name: Deploy client
+        uses: cd client && npm run deploy
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./client/build
