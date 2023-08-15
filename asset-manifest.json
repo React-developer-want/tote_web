@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/tote_web/static/css/main.0ae48a9e.css",
+    "main.js": "/tote_web/static/js/main.d618497b.js",
+    "static/media/font-Medium.ttf": "/tote_web/static/media/font-Medium.7429a63c09f79a1760b0.ttf",
+    "static/media/font-Regular.ttf": "/tote_web/static/media/font-Regular.a8d6ac03c7b96b7acb62.ttf",
+    "static/media/font-Bold.ttf": "/tote_web/static/media/font-Bold.75371f53f06181df75f1.ttf",
+    "static/media/font-Light.ttf": "/tote_web/static/media/font-Light.8be2d1487420548b3b8d.ttf",
+    "static/media/Nunito-Medium.ttf": "/tote_web/static/media/Nunito-Medium.5c758da119667f9f989f.ttf",
+    "static/media/Nunito-Regular.ttf": "/tote_web/static/media/Nunito-Regular.325f6b17880102deb0a8.ttf",
+    "static/media/Nunito-Bold.ttf": "/tote_web/static/media/Nunito-Bold.4553e8e307fb4dc343b7.ttf",
+    "index.html": "/tote_web/index.html",
+    "main.0ae48a9e.css.map": "/tote_web/static/css/main.0ae48a9e.css.map",
+    "main.d618497b.js.map": "/tote_web/static/js/main.d618497b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ae48a9e.css",
+    "static/js/main.d618497b.js"
+  ]
+}
