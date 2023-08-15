@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import WelcomePage from "./welcome-page";
 import './styles.scss';
 import { useDispatch } from "react-redux";

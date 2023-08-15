@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React,{ useState,useRef } from 'react';
 import './style.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
