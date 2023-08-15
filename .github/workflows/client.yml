@@ -10,9 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      REACT_APP_BASE_URI: ${{ secrets.REACT_APP_BASE_URI }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -34,6 +31,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./client/build # Make sur
+          publish_dir: ./client/build
         env:
           REACT_APP_BASE_URI: ${{ secrets.REACT_APP_BASE_URI }}
