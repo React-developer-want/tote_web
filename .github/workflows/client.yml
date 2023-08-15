@@ -26,12 +26,16 @@ jobs:
         run: cd client && npm install
 
       - name: Build client
-        run: cd client && npm run build
+        run: |
+          cd client
+          npm run build
 
       - name: Deploy client
-        run: cd client && npm run deploy
+        run: |
+          cd client
+          npm run deploy
         env:
           REACT_APP_BASE_URI: ${{ secrets.REACT_APP_BASE_URI }}
-        with:
+        env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./client/build
