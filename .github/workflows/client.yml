@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      REACT_APP_BASE_URI : ${{ vars.REACT_APP_BASE_URI }}
+      REACT_APP_BASE_URI: ${{ secrets.REACT_APP_BASE_URI }}
 
     steps:
       - name: Checkout repository
@@ -26,10 +26,12 @@ jobs:
         run: cd client && npm install
 
       - name: Build client
-        run: cd client && npm run Build
+        run: cd client && npm run build
 
       - name: Deploy client
-        uses: cd client && npm run deploy
+        run: cd client && npm run deploy
+        env:
+          REACT_APP_BASE_URI: ${{ secrets.REACT_APP_BASE_URI }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./client/build
