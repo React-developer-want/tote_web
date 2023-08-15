@@ -31,11 +31,9 @@ jobs:
           npm run build
 
       - name: Deploy client
-        run: |
-          cd client
-          npm run deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./client/build # Make sur
         env:
           REACT_APP_BASE_URI: ${{ secrets.REACT_APP_BASE_URI }}
-        env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./client/build

@@ -14,6 +14,7 @@ export const getAllBoards = async () => {
 };
 
 export const createBoard = async (details) => {
+  console.log({details});
   const token = getLocalStorageKey('token');
   const url = process.env.REACT_APP_BASE_URI + '/api/v1/task-board/boards';
 
